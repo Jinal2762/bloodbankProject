@@ -1,0 +1,47 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<h3 class="text-22 text-midnight text-bold mb-4">Van Form</h3>
+<form method="POST" action="/vanscheduling_form/">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="input-label">
+            <label>Van Number</label>
+        </div>
+        <input type="number" class="form-control" value="" name="van_num">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Van Time</label>
+        </div>
+        <input type="datetime-local" class="form-control" value="" name="v_datetime">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Van Address</label>
+        </div>
+        <textarea class="form-control" id="textarea" rows="5" name="v_add"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Description</label>
+        </div>
+        <input type="text" class="form-control" value="" name="description">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect2">Area</label>
+        </div>
+        <select name="area_id" class="form-control" id="exampleFormControlSelect2">
+           {% for data in flag %}
+                <option value="{{data.area_id}}">{{data.area_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+     <div class="form-group">
+         <button type="submit" class="submit-btn">SUBMIT FORM</button>
+     </div>
+</form>
+
+{% endblock %}

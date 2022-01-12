@@ -1,0 +1,49 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>FEEDBACK</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <table id="Feedback-Table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Feedback Id</th>
+                        <th>Donor Id</th>
+                        <th>Receiver Id</th>
+                        <th>Feedback</th>
+                        <th>Date</th>
+                        <th>Bloodbank Id</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in feedbacks %}
+                    <tr>
+                        <td>{{ data.f_id}}</td>
+                        <td>{{ data.d_id }}</td>
+                        <td>{{ data.receiver_id}}</td>
+                        <td>{{ data.feedback_b }}</td>
+                        <td>{{ data.f_date}}</td>
+                        <td>{{ data.b_id}}</td>
+                        <td><a href = "/delete_feedback/{{ data.f_id }}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

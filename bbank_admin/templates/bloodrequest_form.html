@@ -1,0 +1,65 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<h3 class="text-22 text-midnight text-bold mb-4">Blood Request Form</h3>
+<form method="POST" action="/bloodrequest_form/">
+    {% csrf_token %}
+     <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect1">Bloodbank</label>
+        </div>
+        <select name="b_id" class="form-control" id="exampleFormControlSelect1">
+           {% for data in flag %}
+                <option value="{{data.b_id}}">{{data.b_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+     <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect2">BloodGroup-type</label>
+        </div>
+        <select name="bloodgrp_id" class="form-control" id="exampleFormControlSelect2">
+           {% for data in temp2 %}
+                <option value="{{data.bloodgrp_id}}">{{data.bloodgrp_type}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect3">Hospital</label>
+        </div>
+        <select name="h_id" class="form-control" id="exampleFormControlSelect3">
+           {% for data in temp %}
+                <option value="{{data.h_id}}">{{data.h_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect4">Receiver</label>
+        </div>
+        <select name="receiver_id" class="form-control" id="exampleFormControlSelect4">
+           {% for data in temp1 %}
+                <option value="{{data.receiver_id}}">{{data.first_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Request Status</label>
+        </div>
+        <input type="text" class="form-control" value="" name="status">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Blood Quantity</label>
+        </div>
+        <input type="number" class="form-control" value="" name="qty">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="submit-btn">SUBMIT FORM</button>
+    </div>
+</form>
+
+{% endblock %}

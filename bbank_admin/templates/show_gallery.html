@@ -1,0 +1,50 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>GALLERY</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <h3><a href="\gallery_form\">Insert new records</a> </h3>
+                <table id="Gallery-Table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Gallery Id</th>
+                        <th>Bloodbank Id</th>
+                        <th>Hospital Id</th>
+                        <th>Image Path</th>
+                        <th>Event Id</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in gallerys %}
+                    <tr>
+                        <td>{{ data.gallery_id}}</td>
+                        <td>{{ data.b_id}}</td>
+                        <td>{{ data.h_id }}</td>
+                        <td>{{ data.img_path}}</td>
+                        <td>{{ data.event_id }}</td>
+                        <td><a href = "/delete_gallery/{{ data.gallery_id }}">Delete</a></td>
+                        <td><a href = "/edit_gallery/{{ data.gallery_id }}">Update</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

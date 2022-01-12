@@ -1,0 +1,56 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<h3 class="text-22 text-midnight text-bold mb-4">Bloodbank Form</h3>
+<form method="post" action="/edit_bbank/{{bbank.b_id}}">
+    {% csrf_token %}
+       <div class="form-group">
+        <div class="input-label">
+            <label>Bloodbank Name</label>
+        </div>
+        <input type="text" class="form-control" value="" name="b_name">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Address</label>
+        </div>
+        <textarea class="form-control" id="textarea" rows="5" name="b_address"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Email</label>
+        </div>
+        <input type="email" class="form-control" value="" name="b_email">
+    </div>
+     <div class="form-group">
+         <div class="input-label">
+             <label>Password</label>
+         </div>
+         <input type="password" class="form-control" value="" name="b_pwd">
+     </div>
+    <div class="form-group col-md-4">
+        <label>Contact Number</label>
+        <input type="number" class="form-control" value="" name="b_contact" placeholder="Enter contact number here">
+    </div>
+     <div class="form-group">
+         <div class="input-label">
+             <label>Timing</label>
+         </div>
+         <input type="time" class="form-control" name="b_timing">
+     </div>
+     <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect2">Area</label>
+        </div>
+        <select name="area_id" class="form-control" id="exampleFormControlSelect2">
+           {% for data in temp %}
+                <option value="{{data.area_id}}">{{data.area_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+            <button type="submit" class="submit-btn">SUBMIT FORM</button>
+    </div>
+</form>
+{% endblock %}

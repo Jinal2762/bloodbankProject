@@ -1,0 +1,890 @@
+/*---------------------------------------------
+Template Name: Dashy| Responsive Admin Dashboard Template
+Template URL: https://affixtheme.com/html/dashy/
+Description: Bootstrap HTML Admin Template
+Author: AffixTheme
+Author URL: https://themeforest.net/user/affixtheme/portfolio
+Version: 1.0.0
+--------------------------------------------*/
+
+body {
+    direction: rtl;
+}
+
+.input-group {
+    padding: 0 15px 0 0;
+}
+
+.form-group .form-check .form-check-label:after {
+    left: inherit;
+    right: 3px;
+}
+
+.form-group .passcode-eye {
+    right: inherit;
+    left: 20px;
+}
+
+.nav-bar-fixed {
+    left: inherit;
+    right: 270px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .nav-bar-fixed {
+        left: inherit;
+        right: 230px;
+    }
+}
+
+.dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.dropdown-menu-right {
+    right: auto;
+    left: 0;
+}
+
+.section-dropdown {
+    text-align: left;
+}
+
+.dsy-page-content.vertical-menu {
+    margin-left: 0;
+    margin-right: 270px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .dsy-page-content.vertical-menu {
+        margin-left: 0;
+        margin-right: 230px;
+    }
+}
+
+.dsy-aside-fixed {
+    left: inherit;
+    right: 0;
+}
+
+.dsy-aside-menu .dsy-aside-nav .dsy-menu-item .dsy-menu-link .dsy-menu-link-icon {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.dsy-aside-menu .dsy-aside-nav .dsy-menu-item .dsy-menu-link .dsy-menu-count {
+    left: 0;
+    right: auto;
+}
+
+.dsy-aside-menu .dsy-aside-nav .dsy-menu-item .dsy-sub-group .dsy-menu-link {
+    padding: 0 35px 0 15px;
+}
+
+.dsy-aside-brand {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+@media only screen and (max-width: 991px) {
+    .dsy-aside-fixed {
+        right: -280px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .dsy-page-content.vertical-menu {
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .nav-bar-fixed {
+        right: 0;
+    }
+}
+
+.sidebar-collapsed-mobile .dsy-aside-fixed {
+    left: inherit;
+    right: 0;
+}
+
+.sidebar-collapsed .dsy-page-content .nav-bar-fixed {
+    left: inherit;
+    right: 75px;
+}
+
+.sidebar-collapsed .dsy-page-content {
+    margin-left: inherit;
+    margin-right: 75px;
+}
+
+.dsy-aside-brand .nav-toggle-btn {
+    right: inherit;
+    left: 20px;
+}
+
+.mean-container a.meanmenu-reveal {
+    left: 0!important;
+    right: inherit!important;
+}
+
+.mean-container .mean-bar .mobile-menu-nav-back {
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+.horizontal-menu .container-fluid .template-main-menu>ul>li:nth-last-child(1) ul.third-level,
+.vertical-menu .container-fluid .template-main-menu>ul>li:nth-last-child(1) ul.third-level {
+    left: inherit;
+    right: -100%;
+}
+
+.horizontal-menu .container-fluid .template-main-menu>ul>li:nth-last-child(2) ul.third-level,
+.vertical-menu .container-fluid .template-main-menu>ul>li:nth-last-child(2) ul.third-level {
+    left: inherit;
+    right: -100%;
+}
+
+.nav-top-bar1 .navbar-nav .dropdown {
+    margin-right: 0;
+    margin-left: 22px;
+}
+
+.nav-top-bar1 .navbar-nav .dropdown .navbar-nav-link img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar1 .navbar-nav .dropdown .navbar-nav-link i:before {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+.nav-top-bar1 .navbar-nav .nav-language .dropdown-menu .dropdown-item img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar1 .navbar-nav .nav-notification .dropdown-menu .nofify-list .item-img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar1 .navbar-nav .nav-message .dropdown-menu .nofify-list .item-img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar1 .navbar-nav .nav-admin .dropdown-menu .settings-list a i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar1 .navbar-nav .nav-notification .dropdown-menu {
+    right: auto;
+    left: -57px;
+}
+
+.nav-top-bar1 .navbar-nav .nav-message .dropdown-menu {
+    right: auto;
+    left: -107px;
+}
+
+.nav-top-bar1 .navbar-nav li {
+    margin-right: 0;
+    margin-left: 30px;
+}
+
+.nav-top-bar2 .navbar-nav .dropdown {
+    margin-right: 0;
+    margin-left: 22px;
+}
+
+.nav-top-bar2 .navbar-nav .dropdown .navbar-nav-link img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar2 .navbar-nav .nav-admin .navbar-nav-link i {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+.nav-top-bar2 .navbar-nav .dropdown:last-child {
+    margin-left: 0;
+}
+
+.nav-top-bar2 .navbar-nav .nav-admin .dropdown-menu .settings-list a i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar2 .navbar-nav .nav-notification .dropdown-menu .nofify-list .item-img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar2 .navbar-nav .nav-message .dropdown-menu .nofify-list .item-img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.nav-top-bar2 .navbar-nav .dropdown .navbar-nav-link i:before {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+.nav-top-bar2 .navbar-nav .nav-language .dropdown-menu .dropdown-item img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.template-main-menu>ul>li {
+    margin-right: 0;
+    margin-left: 17px;
+}
+
+.template-main-menu>ul>li:last-child {
+    margin-left: 0;
+}
+
+.template-main-menu>ul>li ul.dropdown-menu-col-1 {
+    left: inherit;
+    right: 24px;
+}
+
+.template-main-menu>ul>li>a:after {
+    right: inherit;
+    left: 0;
+}
+
+.template-main-menu>ul>li>a i:before {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.template-main-menu>ul>li>ul>li a.third-level-arrow:after {
+    right: inherit;
+    left: 20px;
+}
+
+.template-main-menu>ul>li>ul>li:hover .third-level-arrow:after {
+    right: inherit;
+    left: 15px;
+}
+
+.template-main-menu>ul>li ul.multi-level>li>a {
+    display: flex;
+}
+
+.template-main-menu>ul>li ul.dropdown-menu-col-1>li>a i:before {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.breadcrumbs-wrap .breadcrumbs-btn {
+    text-align: left;
+}
+
+.breadcrumbs-wrap .breadcrumbs-btn li a {
+    display: flex;
+}
+
+.breadcrumbs-wrap .breadcrumbs-btn li a i:before {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.summery-box .media {
+    padding: 0 40px 0 0;
+}
+
+.summery-box .media .item-icon {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.summery-box .growth-rate {
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+.recent-activity .card-body .media .item-img {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.sales-table .heading-item .media .item-icon {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.crypto-notify .media .item-img {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.crypto-notify .media .entry-meta li {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.crypto-notify .media .entry-meta li i {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+.sales-chart ul li {
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+.sales-chart ul li:after {
+    right: 0;
+}
+
+.sales-table .heading-item .heading-btn {
+    text-align: left;
+}
+
+.sales-table .table thead th {
+    padding: 18px 25px 18px 5px;
+}
+
+.sales-table .table tbody td {
+    padding: 10px 25px 10px 5px;
+}
+
+.sales-revenue .card-body .table thead th {
+    padding: 14px 0 14px 10px;
+}
+
+.sales-revenue .card-body .table tbody tr td img {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.transaction-latest .table tbody tr td {
+    padding: 10px 25px 10px 5px;
+}
+
+.transaction-latest .table tbody tr td img {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.web-traffic .traffic-list .media .item-bar {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.web-audience .duration-btn a:last-child {
+    padding-left: 0;
+    margin-right: 25px;
+}
+
+.web-audience .duration-btn a:first-child {
+    margin-right: 0;
+}
+
+.web-session .item-icon {
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+.web-perform .perform-box .item-ratio {
+    text-align: left;
+}
+
+.web-perform .perform-box .item-growth {
+    text-align: left;
+}
+
+.apexcharts-legend-marker {
+    margin-right: 0;
+    margin-left: 3px;
+}
+
+.browser-table .card-body .section-title {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+.browser-table .card-body .section-dropdown {
+    padding-right: 0;
+    padding-left: 25px;
+}
+
+.browser-table .card-body .table thead tr th:first-child {
+    padding: 0 25px 10px 0;
+}
+
+.browser-table .card-body .table thead tr th:last-child {
+    padding: 0 0 10px 25px;
+}
+
+.browser-table .card-body .table tbody td:first-child {
+    padding: 14px 25px 8px 0;
+}
+
+.browser-table .card-body .table tbody td:last-child {
+    padding: 14px 0 8px 25px;
+}
+
+.browser-table .card-body .table tbody td img {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.visitor-table .table tbody td .progress .progress-bar span {
+    right: auto;
+    left: -40px;
+}
+
+.crypto-transaction .section-dropdown {
+    padding-right: 0;
+    padding-left: 25px;
+}
+
+.crypto-transaction .section-title {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+.crypto-transaction .nav-tabs .nav-item {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.crypto-transaction .nav-tabs .nav-item:last-child {
+    margin-left: 0;
+}
+
+.crypto-transaction .table thead th:last-child {
+    padding: 10px 0 10px 25px;
+}
+
+.crypto-transaction .table thead th:first-child {
+    padding: 10px 25px 10px 5px;
+}
+
+.crypto-transaction .table tbody td:last-child {
+    padding: 10px 0 10px 25px;
+}
+
+.crypto-transaction .table tbody td:first-child {
+    padding: 10px 25px 10px 5px;
+}
+
+.crypto-currency .table .item-title {
+    padding-left: 0;
+    padding-right: 18px;
+}
+
+.crypto-currency .table .item-title:after {
+    left: auto;
+    right: 0;
+}
+
+.my-calender .event-list li {
+    padding-right: 30px;
+    padding-left: 15px;
+}
+
+.my-calender .event-list li:after {
+    left: 0;
+    right: 15px;
+}
+
+.chat-list .card-body .input-group {
+    padding: 0 20px 0 0;
+}
+
+.chat-list .card-body .nav-tabs .nav-item {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.chat-list .card-body .nav-tabs .nav-item:last-child {
+    margin-left: 0;
+}
+
+.chat-list .card-body .tab-content .tab-pane .media .item-img {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.chat-list .card-body .tab-content .tab-pane .media {
+    padding: 14px 10px 15px 12px;
+}
+
+.chat-conversion .item-heading .media .item-img {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+.chat-conversion .item-heading .action-btn a {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.chat-conversion .item-heading .action-btn a:last-child {
+    margin-left: 0;
+}
+
+.chat-conversion .coversion-details li .action-btn .share-icon {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.chat-conversion .coversion-details li img {
+    margin-right: 0;
+    margin-left: 7px;
+}
+
+.chat-conversion .coversion-details .text-you .action-btn .share-icon {
+    margin-left: 0;
+    margin-right: 12px;
+}
+
+.chat-conversion .message-box .input-group .attach-btn,
+.chat-conversion .message-box .input-group .emo-btn {
+    margin-right: 0;
+    margin-left: 14px;
+}
+
+.chat-conversion .message-box .input-group .attachment-icon {
+    left: auto;
+    right: 40px;
+}
+
+.chat-conversion .message-box .input-group {
+    padding: 5px 15px 5px 10px;
+}
+
+.chat-conversion .coversion-details li .action-btn .dropdown-menu .dropdown-item i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.file-manager .heading-area .heading-btn {
+    text-align: left;
+}
+
+.file-manager .browse-file .item-heading .dropdown .dropdown-menu {
+    transform: translate3d(0px, 29px, 0px)!important;
+}
+
+.file-manager-aside .side-category .menu-list .menu-link i:before {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.file-manager .heading-area .heading-btn a {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+.file-manager .heading-area .heading-btn a i:before {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.file-manager .heading-area .heading-btn a:last-child {
+    margin-left: 0;
+}
+
+.file-manager .browse-file .file-folder .dropdown-menu .dropdown-item i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.file-manager-aside .side-category .media .item-icon {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.contact-apps .contact-box .dropdown-menu .dropdown-item i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.contact-apps .contact-box .contact-location li i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.contact-apps .contact-box .contact-location li {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+.contact-apps .contact-box .contact-location li:last-child {
+    margin-left: 0;
+}
+
+.contact-apps .contact-heading .dropdown .dropdown-menu {
+    transform: translate3d(0px, 20px, 0px)!important;
+}
+
+.contact-apps .contact-heading .dropdown .dropdown-toggle:after {
+    vertical-align: baseline;
+}
+
+.contact-apps .contact-list .table tbody td a i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.contact-apps .contact-list .table tbody td a:last-child i {
+    margin-left: 0;
+}
+
+.select2-container--classic .select2-search--inline .select2-search__field {
+    padding-left: 0;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.select2-container--classic .select2-selection--multiple .select2-selection__choice {
+    float: right;
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+.dropdown-item:active {
+    background-color: #f8f9fa;
+    color: #2184f3!important;
+}
+
+.email-table .item-heading .action-btn li {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.email-table .item-heading .action-btn li:last-child {
+    margin-left: 0;
+}
+
+.email-table .item-heading .action-btn .dropdown-toggle:after {
+    vertical-align: baseline;
+}
+
+.email-table .table tr td .badge {
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+.email-table .item-footer .pagination-btn {
+    text-align: left;
+}
+
+.email-aside .side-category .menu-list .menu-link i:before {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.email-aside .side-category label {
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+.email-aside .category-chat .media .item-img {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.email-table .single-email .mail-author .media .item-img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.mail-compose-wrap .compose-body .btn-area {
+    text-align: left;
+}
+
+.email-table .single-email .mail-author {
+    padding: 5px 30px 15px 40px;
+}
+
+.form-check input[type="checkbox"] {
+    left: inherit;
+    right: 0;
+}
+
+.form-check label:before {
+    left: inherit;
+    right: 0;
+}
+
+.form-check label::after {
+    left: inherit;
+    right: 5px;
+}
+
+.select2-container--classic .select2-selection--single .select2-selection__arrow {
+    right: inherit;
+    left: 1px;
+}
+
+.flatpickr-datetime .datetime-icon {
+    right: inherit;
+    left: 20px;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background-position: center left;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+
+.login-form .card-body .account-create>li:after {
+    position: absolute;
+    padding-left: 0;
+    top: 0;
+    left: -50px;
+}
+
+.login-form .card-body .copyright-text span {
+    display: inline-block;
+}
+
+.profile-info .card-body {
+    padding: 35px 25px 0 10px;
+}
+
+.profile-info .profile-personal .table tr td {
+    padding: 20px 0 20px 30px;
+}
+
+.profile-aside .nav-tabs .nav-link:after {
+    right: inherit;
+    left: 0;
+}
+
+.profile-aside .nav-tabs .nav-link {
+    display: flex;
+}
+
+.profile-aside .nav-tabs .nav-link i:before {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.profile-aside .user-heading .media .item-img {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+.profile-aside .user-heading .dropdown .dropdown-menu .dropdown-item i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.profile-aside .user-heading .dropdown .dropdown-toggle:before {
+    left: inherit;
+    right: -3px;
+}
+
+.profile-aside .user-heading .dropdown .dropdown-toggle {
+    padding: 0 10px 0 0;
+}
+
+.basic-info-modal .modal-content .nav-tabs .nav-item {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.basic-info-modal .modal-content .nav-tabs .nav-item:last-child {
+    margin-left: 0;
+}
+
+.connection-widget .widget-discover li a span {
+    float: left;
+}
+
+.connection-widget .widget-people .media .item-img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.connections-page .nav-tabs .nav-link span {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+.connections-page .nav-tabs .nav-item {
+    margin-right: 0;
+    margin-left: 18px;
+}
+
+.connections-page .nav-tabs .nav-item:last-child {
+    margin-left: 0;
+}
+
+.discover-events .events-box .item-content .item-date i,
+.discover-events .events-box .item-content .item-location i {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+.blog-wrap .blog-box .blog-img .blog-category {
+    right: 20px;
+    left: auto;
+}
+
+.blog-wrap .blog-box .blog-content .entry-meta li i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.blog-wrap .blog-box .blog-content .entry-meta li img {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.blog-wrap .blog-box .blog-content .entry-meta li {
+    margin-right: 0;
+    margin-left: 30px;
+}
+
+.blog-wrap .blog-box .blog-content .entry-meta li:last-child {
+    margin-left: 0;
+}
+
+.input-group .input-group-append button {
+    border-radius: 2px 0 0 2px;
+}
+
+.ui-button-area .card-body .btn {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.footer-wrap .footer-link {
+    text-align: left;
+}
+
+.footer-wrap .footer-link li {
+    margin-left: 0;
+    margin-right: 34px;
+}
+
+.footer-wrap .footer-link li:last-child {
+    margin-right: 34px;
+}
+
+.footer-wrap .footer-link li:first-child {
+    margin-right: 0;
+}

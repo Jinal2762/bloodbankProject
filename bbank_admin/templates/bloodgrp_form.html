@@ -1,0 +1,20 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<h3 class="text-22 text-midnight text-bold mb-4">BloodGroup Form</h3>
+                                    <form method = "post" action = "/bloodgrp_form/">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="input-label">
+                                                <label>Blood-Group Type</label>
+                                            </div>
+                                            <input type="text" class="form-control" value="" name="bloodgrp_type">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="submit-btn">SUBMIT FORM</button>
+                                        </div>
+                                    </form>
+
+{% endblock %}

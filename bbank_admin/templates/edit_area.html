@@ -1,0 +1,16 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<h3 >Area Form</h3>
+<form method = "post" action = "/edit_area/{{area.area_id}}">
+    {% csrf_token %}
+    <label>Area Name</label>
+    <input type="text" name="area_name" value="{{area.area_name}}">
+
+    <label>Pincode</label>
+
+    <input type="number"  name="pincode" value="{{area.pincode}}">
+    <button type="submit">SUBMIT FORM</button>
+</form>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="summery-wrap">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card summery-box">
+                                    <div class="card-body">
+                                        <div class="summery-line">
+                                            <div id="summery-line1"></div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="item-icon bg-lynch">
+                                                <img src="../../../media/figure/icon_1.png" alt="icon">
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="item-title">DONORS<span class="text-manatee"></span></h3>
+                                                <div class="item-currency">{{don}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card summery-box">
+                                    <div class="card-body">
+                                        <div class="summery-line">
+                                            <div id="summery-line2"></div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="item-icon bg-carrot-orange">
+                                                <img src="../../../media/figure/icon_2.png" alt="icon">
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="item-title">RECEIVERS<span class="text-manatee"></span></h3>
+                                                <div class="item-currency">{{rec}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card summery-box">
+                                    <div class="card-body">
+                                        <div class="summery-line">
+                                            <div id="summery-line3"></div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="item-icon bg-azure">
+                                                <img src="../../../media/figure/icon_3.png" alt="icon">
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="item-title">BLOOD BANKS<span class="text-manatee"></span></h3>
+                                                <div class="item-currency">{{bb}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card summery-box">
+                                    <div class="card-body">
+                                        <div class="summery-line">
+                                            <div id="summery-line4"></div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="item-icon bg-blue-ribbon">
+                                                <img src="../../../media/figure/icon_4.png" alt="icon">
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="item-title">HOSPITALS<span class="text-manatee"></span></h3>
+                                                <div class="item-currency">{{hos}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>Donor Table</h1>
+                </div>
+            </div>
+            <div class="col-sm-8 col-12">
+                <div class="breadcrumbs-area text-sm-right">
+                    <ul>
+                        <li>
+                            <a href="#">COMPONENTS</a>
+                        </li>
+                        <li>
+                            <a href="#">TABLE</a>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--=====================================-->
+<!--=         	Button Area Start         =-->
+<!--=====================================-->
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <table id="data-table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Donor ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Blood Group Id</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Date of birth</th>
+                        <th>Weight</th>
+                        <th>Id Proof</th>
+                        <th>House Number</th>
+                        <th>Address</th>
+                        <th>State</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Area ID</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in donors %}
+                    <tr>
+                        <td>{{ data.d_id }}</td>
+                        <td>{{ data.first_name }}</td>
+                        <td>{{ data.last_name }}</td>
+                        <td>{{ data.bloodgrp_id }}</td>
+                        <td>{{ data.Gender }}</td>
+                        <td>{{ data.email }}</td>
+                        <td>{{ data.contact_no }}</td>
+                        <td>{{ data.dob }}</td>
+                        <td>{{ data.weight }}</td>
+                        <td>{{ data.id_proof }}</td>
+                        <td>{{ data.home_number }}</td>
+                        <td>{{ data.address }}</td>
+                        <td>{{ data.state }}</td>
+                        <td>{{ data.username }}</td>
+                        <td>{{ data.password }}</td>
+                        <td>{{ data.area_id }}</td>
+                        <td><a href = "/delete/{{ data.d_id }}">Delete</a></td>
+
+
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+
+<!--                    <tfoot>-->
+<!--                    <tr>-->
+<!--                        <th>NAME</th>-->
+<!--                        <th>POSITION</th>-->
+<!--                        <th>OFFICE</th>-->
+<!--                        <th>AGE</th>-->
+<!--                        <th>START DATE</th>-->
+<!--                        <th>SALARY</th>-->
+<!--                    </tr>-->
+<!--                    </tfoot>-->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

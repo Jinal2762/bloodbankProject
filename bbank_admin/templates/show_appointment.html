@@ -1,0 +1,52 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>APPOINMENT</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <h3><a href="\appointment_form\">Insert new records</a></h3>
+                <table id="Area-Table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Appoinment Id</th>
+                        <th>Donor Id</th>
+                        <th>Appoinment Date</th>
+                        <th>Bloodbank Id</th>
+                        <th>Appoinment Status</th>
+                        <th>Appoinment Time</th>
+                        <th>ACTION</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in a %}
+                    <tr>
+                        <td>{{data.appointment_id}}</td>
+                        <td>{{ data.d_id }}</td>
+                        <td>{{ data.given_date }}</td>
+                        <td>{{ data.b_id }}</td>
+                        <td>{{ data.appointment_status }}</td>
+                        <td>{{ data.appointment_time }}</td>
+                        <td><a href="/delete_appon/{{ data.appointment_id }}">Delete</a></td>
+                        <td><a href="/edit_appointment/{{ data.appointment_id }}">Update</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

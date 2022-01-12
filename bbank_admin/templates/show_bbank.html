@@ -1,0 +1,57 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>BLOODBANK</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <h3><a href="\bbank_form\">Insert new records</a> </h3>
+                <table id="Bloodabnk-Table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Bloodbank Id</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Contact</th>
+                        <th>Time</th>
+                        <th>Area Id</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in bbanks %}
+                    <tr>
+                        <td>{{ data.b_id}}</td>
+                        <td>{{ data.b_name }}</td>
+                        <td>{{ data.b_address}}</td>
+                        <td>{{ data.b_email }}</td>
+                        <td>{{ data.b_pwd}}</td>
+                        <td>{{ data.b_contact}}</td>
+                        <td>{{ data.b_timing}}</td>
+                        <td>{{ data.area_id}}</td>
+                        <td><a href = "/delete_bbank/{{ data.b_id }}">Delete</a></td>
+                        <td><a href = "/edit_bbank/{{ data.b_id }}">Update</a></td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>VAN</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <h3><a href="\vanscheduling_form\">Insert new record</a> </h3>
+                <table id="Van-Table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Van Id</th>
+                        <th>Van Number</th>
+                        <th>Date-Time</th>
+                        <th>Address</th>
+                        <th>Description</th>
+                        <th>Area Id</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in vans %}
+                    <tr>
+                        <td>{{ data.van_id}}</td>
+                        <td>{{ data.van_num }}</td>
+                        <td>{{ data.v_datetime}}</td>
+                        <td>{{ data.v_add }}</td>
+                        <td>{{ data.description}}</td>
+                        <td>{{ data.area_id}}</td>
+                        <td><a href = "/delete_van/{{ data.van_id }}">Delete</a></td>
+                        <td><a href = "/edit_van/{{ data.van_id }}">Update</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

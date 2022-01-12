@@ -1,0 +1,98 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+
+<h3 class="text-22 text-midnight text-bold mb-4">Donor Form</h3>
+<form method="POST" action="/donor_form/">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="input-label">
+            <label>First Name</label>
+        </div>
+        <input type="text" class="form-control" value="" name="first_name">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Last Name</label>
+        </div>
+        <input type="text" class="form-control" value="" name="last_name">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Email</label>
+        </div>
+        <input type="email" class="form-control" value="" name="email">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect2">BloodGroup-type</label>
+        </div>
+        <select name="bloodgrp_id" class="form-control" id="exampleFormControlSelect2">
+           {% for data in temp %}
+                <option value="{{data.bloodgrp_id}}">{{data.bloodgrp_type}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="input-label" >
+            <label >Gender</label>
+        </div>
+        <div class="form-check" >
+            <input class="form-check-input" name="Gender" type="radio"  id="g_radio1" value="option1">
+            <label class="form-check-label"  for="g_radio1">Male</label><br>
+
+            <input class="form-check-input" name="Gender" type="radio"  id="g_radio2" value="option2">
+            <label class="form-check-label" for="g_radio2">Female</label><br>
+
+            <input class="form-check-input" name="Gender" type="radio"  id="g_radio3" value="option3">
+            <label class="form-check-label" for="g_radio3">Other</label><br>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Date of Birth</label>
+        </div>
+        <input type="date" class="form-control" value="" name="dob">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Donor Weight</label>
+        </div>
+        <input type="number" class="form-control" value="" name="donor_weight">
+    </div>
+    <div class="form-group col-md-4">
+        <label>Contact Number</label>
+        <input type="number" class="form-control" value="" placeholder="Enter contact number here" name="contact_no">
+    </div>
+    <div class="form-group">
+        <label>Addhaar Number</label>
+        <input type="number" class="form-control" value="" name="id_proof" placeholder="Enter Id proof number here" >
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Donor Address</label>
+        </div>
+        <textarea class="form-control" id="textarea" rows="5" name="address"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Password</label>
+        </div>
+        <input type="password" class="form-control" value="" name="password">
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect3">Area</label>
+        </div>
+        <select name="area_id" class="form-control" id="exampleFormControlSelect3">
+           {% for data in flag %}
+                <option value="{{data.area_id}}">{{data.area_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="submit-btn">SUBMIT FORM</button>
+    </div>
+</form>
+
+{% endblock %}

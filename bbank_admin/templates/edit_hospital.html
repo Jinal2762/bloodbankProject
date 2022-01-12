@@ -1,0 +1,58 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<h3 class="text-22 text-midnight text-bold mb-4">Hospital Form</h3>
+    <form method="POST" action="/edit_hospital/{{hospital.h_id}}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-label">
+                <label>Hospital Name</label>
+            </div>
+        <input type="text" class="form-control" value="" name="h_name">
+        </div>
+        <div class="form-group">
+            <div class="input-label">
+                <label>Address</label>
+        </div>
+        <textarea class="form-control" id="textarea" name="h_address" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="input-label">
+                <label>Email</label>
+            </div>
+            <input type="email" class="form-control" value="" name="h_email">
+        </div>
+        <div class="form-group">
+            <div class="input-label">
+                <label>Password</label>
+            </div>
+            <input type="password" class="form-control" value="" name="h_pwd">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Country code</label>
+            <select id="coutrycode" class="form-control select">
+                <option selected>+91</option>
+                <option selected>+93</option>
+                <option selected>+92</option>
+                <option selected>+62</option>
+                <option selected>+98</option>
+                <option selected></option>
+            </select>
+            <input type="number" class="form-control" value="" placeholder="Enter contact number here" name="h_contact">
+        </div>
+        <div class="form-group">
+            <div class="input-label">
+                <label for="exampleFormControlSelect2">Area</label>
+            </div>
+            <select name="area_id" class="form-control" id="exampleFormControlSelect2">
+            {% for data in flag %}
+                <option value="{{data.area_id}}">{{data.area_name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="submit-btn">SUBMIT FORM</button>
+        </div>
+    </form>
+
+{% endblock %}

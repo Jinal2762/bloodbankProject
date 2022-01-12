@@ -1,0 +1,61 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="col-lg-8">
+    <div class="card profile-info">
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="presonal-info" role="tabpanel">
+                    <form method="POST" action="/edit_profile/">
+                        {% csrf_token %}
+                        <div class="profile-personal">
+                            <div class="item-heading">
+                                <h4 class="text-xtrabold text-body mb-1">EDIT PROFILE</h4>
+                            </div>
+                            <div class="item-label">Basics Info</div>
+                            <div class="table-responsive">
+                                <table class="table basic-info table-borderless">
+                                    <tbody>
+                                    <tr data-toggle="modal" data-target="#info-edit">
+                                        <td>First Name</td>
+                                        <td><input type="text" name="admin_fname" value="{{details.admin_fname}}"></td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#info-edit">
+                                        <td>Last Name</td>
+                                        <td><input type="text" name="admin_lname" value="{{details.admin_lname}}"></td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#info-edit">
+                                        <td>Email</td>
+                                        <td><input type="text" name="admin_email" value="{{details.admin_email}}"></td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#info-edit">
+                                        <td>Phone Number</td>
+                                        <td><input type="text" name="admin_contact" value="{{details.admin_contact}}">
+                                        </td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#info-edit">
+                                        <td>Date of Birth</td>
+                                        <td><input type="date" name="admin_dob" value="{{dob}}"></td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#info-edit">
+                                        <td>Gender</td>
+                                        <td><input type="radio" name="admin_gender"
+                                                   value="{{details.admin_gender}}"><label>Male</label>
+                                            <input type="radio" name="admin_gender"
+                                                   value="{{details.admin_gender}}"><label>Female</label></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <button type="submit" class="submit-btn">UPDATE PROFILE</button>
+                                <button type="button" class="cancel-btn" data-dismiss="modal">CANCEL</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

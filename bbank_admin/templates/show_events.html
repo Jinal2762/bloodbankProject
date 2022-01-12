@@ -1,0 +1,58 @@
+{% extends "header_footer.html" %}
+{% load static %}
+{% block content %}
+<div class="breadcrumbs-wrap">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-4 col-12">
+                <div class="breadcrumbs-area">
+                    <h1>EVENTS</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card component-table">
+        <div class="card-body">
+            <h3 class="text-body text-center text-md-left text-22 text-bold mb-4"></h3>
+            <div class="table-responsive">
+                <h3><a href="\events_form\">Insert new records</a> </h3>
+                <table id="Area-Table" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Event Id</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Bloodbank Id</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Location</th>
+                        <th>Hospital Id</th>
+                        <th>Area Id</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in events %}
+                    <tr>
+                        <td>{{ data.event_id}}</td>
+                        <td>{{ data.e_name }}</td>
+                        <td>{{ data.e_date}}</td>
+                        <td>{{ data.b_id }}</td>
+                        <td>{{ data.e_des}}</td>
+                        <td>{{ data.e_img}}</td>
+                        <td>{{ data.e_location}}</td>
+                        <td>{{ data.h_id}}</td>
+                        <td>{{data.area_id}}</td>
+                        <td><a href = "/delete_event/{{ data.event_id }}">Delete</a></td>
+                        <td><a href = "/edit_event/{{ data.event_id }}">Update</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
