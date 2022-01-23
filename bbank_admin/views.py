@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
 from bbank_admin.function import handle_uploded_file
-from bbank_admin.forms import AdminForm, AreaForm, VanForm, Blood_grpForm, DonorForm, ReceiverForm, BbankForm, HospitalsForm, FeedbackForm, Blood_stockForm, AppointmentForm, Request_bloodForm, EventForm, GalleryForm
-from bbank_admin.models import Area, Blood_grp, Donor, Receiver, Bloodbank, Hospitals, Feedback, Blood_stock, Appointment, Request_blood, Admin, Event, Gallery, Van
+from bbank_admin.forms import AdminForm, AreaForm, VanForm, Blood_grpForm, DonorForm, ReceiverForm, BbankForm, \
+    HospitalsForm, FeedbackForm, Blood_stockForm, AppointmentForm, Request_bloodForm, EventForm, GalleryForm
+from bbank_admin.models import Area, Blood_grp, Donor, Receiver, Bloodbank, Hospitals, Feedback, Blood_stock, \
+    Appointment, Request_blood, Admin, Event, Gallery, Van
 import random
 import sys
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.http import HttpResponse
+from django.db import connection
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.views.generic import View
 
 
 def show_area(request):
@@ -620,3 +626,29 @@ def destroy_donor(request, d_id):
     donor.delete()
     return redirect("/show_donor")
 
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "dashboard.html")
+
+
+class ProjectChart(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        cursor = connection.cursor()
+        cursor.execute(
+            '''SELECT * from bloodbank_donor''')
+        qs = cursor.fetchall()
+        print("=====0", qs)
+        labels = []
+        default_items = []
+        for item in qs:
+            labels.append(item[0])
+            default_items.append(item[1])
+        data = {
+            "labels": labels,
+            "default": default_items,
+        }
+        return Response(data)

@@ -96,6 +96,8 @@ class Donor(models.Model):
     address = models.CharField(max_length=100)
     password = models.CharField(max_length=8)
     area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
+    d_otp = models.CharField(max_length=10, null=True)
+    d_otp_used = models.IntegerField()
 
     class Meta:
         db_table = "bloodbank_donor"
