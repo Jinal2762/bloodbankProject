@@ -1,0 +1,63 @@
+{% extends "client_header.html" %}
+{% load static %}
+{% block content %}
+<section class="page-header" data-stellar-background-ratio="1.2">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12 text-center">
+
+
+                <h3>
+                    RESET PASSWORD
+                </h3>
+
+                <p class="page-breadcrumb">
+                    <a href="#">Home</a> /Login
+                </p>
+
+
+            </div>
+
+        </div> <!-- end .row  -->
+
+    </div> <!-- end .container  -->
+
+</section> <!-- end .page-header  -->
+
+<!--  MAIN CONTENT  -->
+
+
+<section class="section-content-block section-secondary-bg">
+
+    <div class="container">
+
+        <div class="contact-form-block">
+
+            <h2 class="contact-title">Reset Password</h2>
+
+            <form role="form" method="post" id="contact-form" action="/send_otpc/">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email"
+                           data-msg="Please Write Your Valid Email"/>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">SEND RESET LINK</button>
+                </div>
+
+            </form>
+            <a href="client_login.html" class="login-back">Return to login</a>
+
+        </div> <!-- end .contact-form-block  -->
+
+
+    </div> <!--  end .container -->
+
+</section> <!-- end .section-content-block  -->
+<script>var page_name = "forgot.html";</script>
+<!-- START FOOTER  -->
+{% endblock %}

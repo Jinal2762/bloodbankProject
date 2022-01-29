@@ -4,7 +4,6 @@ from bbank_admin.models import Blood_grp
 from bbank_admin.models import Donor
 from bbank_admin.models import Receiver
 from bbank_admin.models import Bloodbank
-from bbank_admin.models import Hospitals
 from bbank_admin.models import Blood_stock
 from bbank_admin.models import Appointment
 from bbank_admin.models import Request_blood
@@ -53,12 +52,6 @@ class BbankForm(forms.ModelForm):
         fields = ["b_name", "b_address", "b_email", "b_pwd", "b_contact", "b_timing", "area_id"]
 
 
-class HospitalsForm(forms.ModelForm):
-    class Meta:
-        model = Hospitals
-        fields = ["h_name", "h_address", "h_email", "h_pwd", "h_contact", "area_id"]
-
-
 class Blood_stockForm(forms.ModelForm):
     class Meta:
         model = Blood_stock
@@ -74,7 +67,7 @@ class AppointmentForm(forms.ModelForm):
 class Request_bloodForm(forms.ModelForm):
     class Meta:
         model = Request_blood
-        fields = ["receiver_id", "h_id", "bloodgrp_id", "b_id", "status", "qty"]
+        fields = ["receiver_id", "bloodgrp_id", "b_id", "status", "qty"]
 
 
 class EventForm(forms.ModelForm):
@@ -82,7 +75,7 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ["e_name", 'e_date', 'b_id', 'e_des', 'e_img', 'e_location', 'h_id', 'area_id']
+        fields = ["e_name", 'e_date', 'b_id', 'e_des', 'e_img', 'e_location', 'area_id']
 
 
 class VanForm(forms.ModelForm):
@@ -96,7 +89,7 @@ class GalleryForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
-        fields = ["h_id", "img_path", "event_id", "b_id"]
+        fields = [ "img_path", "event_id", "b_id"]
 
 
 class FeedbackForm(forms.ModelForm):
