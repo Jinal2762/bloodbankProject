@@ -8,6 +8,10 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.http import HttpResponse
+from django.db import connection
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.views.generic import View
 
 
 def show_area(request):
@@ -619,4 +623,32 @@ def destroy_donor(request, d_id):
     donor = Donor.objects.get(d_id=d_id)
     donor.delete()
     return redirect("/show_donor")
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "dashboard.html")
+
+
+class ProjectChart(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        cursor = connection.cursor()
+        cursor.execute(
+            '''SELECT * from bloodbank_area''')
+        qs = cursor.fetchall()
+
+        labels = []
+        default_items = []
+        for item in qs:
+            labels.append(item[0])
+            default_items.append(item[1])
+        data = {
+            "labels": labels,
+            "default": default_items,
+        }
+        return Response(data)
+
+
 

@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from bbank_admin import views
+from django.conf.urls import url
+from bbank_admin.views import HomeView, ProjectChart
+
 import include
 
 urlpatterns = [
@@ -78,4 +81,6 @@ urlpatterns = [
     path('dashboard/', views.index),
     path('reset/', views.reset),
     path('edit_profile/', views.edit_admin_profile),
+    url(r'charthome', HomeView.as_view(), name='home'),
+    url(r'^api/chart/data/$', ProjectChart.as_view(), name="api-data"),
 ]
