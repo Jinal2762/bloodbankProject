@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
-from bbank_admin import DonorForm,
-from bbank_admin.models import Donor,
+from bbank_admin.forms import DonorForm
+from bbank_admin.models import Donor,Bloodbank
 
 
 def login(request):
     if request.method == "POST":
         d_email = request.POST.get("email")
-        pass = request.POST.get("password")
-        val = Donor.objects.filter(email=d_email, pass=password).count()
-        print("------------------", d_email, "-----------------", pass)
+        pas = request.POST.get("password")
+        val = Donor.objects.filter(email=d_email, pas=password).count()
+        print("------------------", d_email, "-----------------", pas)
         if val == 1:
-            data = Donor.objects.filter(email=d_email, password=pass)
+            data = Donor.objects.filter(email=d_email, password=pas)
             for item in data:
                 request.session['donor_email'] = item.email
                 request.session['donor_pass'] = item.password
@@ -23,11 +23,11 @@ def login(request):
         return render(request, "client_login.html")
 
 
-def forgot(request):
-    return render(request, 'passcode-reset.html')
+def forgotc(request):
+    return render(request, 'forgot.html')
 
 
-def send_otp(request):
+def send_otpc(request):
     otp1 = random.randint(10000, 99999)
     e = request.POST.get('email')
 
@@ -48,7 +48,7 @@ def send_otp(request):
     return render(request, 'set_password.html')
 
 
-def reset(request):
+def resetc(request):
     if request.method == "POST":
 
         T_otp = request.POST.get('d_otp')
@@ -73,3 +73,31 @@ def reset(request):
 
     else:
         return redirect("/forgot")
+
+
+def home(request):
+    return render(request, "home.html")
+
+
+def autosuggest(request):
+    if 'term' in request.GET:
+        qs = Bloodbank.objects.filter(b_name__istartswith=request.GET.get('term'))
+
+        names = list()
+
+        for x in qs:
+            names.append(x.b_name)
+        return JsonResponse(names, safe=False)
+    return render(request, "client_header.html")
+
+
+def search(request):
+    if request.method == "POST":
+        name = request.POST["b_name"]
+        p = Bloodbank.objects.filter(b_name=name)
+
+    else:
+        p = Bloodbank.objects.all()
+
+    return render(request, "bloodbank.html", {"p": p})
+

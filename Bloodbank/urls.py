@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include,path
 from bbank_admin import views
 from django.conf.urls import url
 from bbank_admin.views import HomeView, ProjectChart
-import include
+from bbank_client import client_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -82,5 +83,5 @@ urlpatterns = [
     path('edit_profile/', views.edit_admin_profile),
     url(r'charthome', HomeView.as_view(), name='home'),
     url(r'^api/chart/data/$', ProjectChart.as_view(), name="api-data"),
-    # path('client/', include('bbank_client.client_urls')),
+    path('client/', include('bbank_client.client_urls')),
 ]
