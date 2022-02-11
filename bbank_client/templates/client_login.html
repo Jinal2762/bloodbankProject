@@ -72,12 +72,12 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-12">
                                     <label>Email</label>
-                                    <input type="text" id="email" name="email" placeholder="demo@gmail.com">
+                                    <input type="text" id="email" name="email" placeholder="">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-12">
                                     <div class="form-group">
                                         <label >Password</label>
-                                        <input class="pwd6" type="password" placeholder=""  value="123456" name="pass">
+                                        <input class="pwd6" type="password" placeholder=""  value="" name="pass">
                                     </div>
                                     <span class="input-group-btn">
                                         <button class="btn btn-default reveal6" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
@@ -124,70 +124,3 @@
 
 <!-- Mirrored from hellloexpert.com/tf/html/nasarna/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Mar 2021 20:01:23 GMT -->
 </html>
-=======
-{% extends "client_header.html" %}
-{% load static %}
-{% block content %}
-<section class="page-header" data-stellar-background-ratio="1.2">
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-sm-12 text-center">
-
-
-                <h3>
-                    Login
-                </h3>
-
-                <p class="page-breadcrumb">
-                    <a href="#">Home</a> /Login
-                </p>
-
-
-            </div>
-
-        </div> <!-- end .row  -->
-
-    </div> <!-- end .container  -->
-
-</section> <!-- end .page-header  -->
-
-<!--  MAIN CONTENT  -->
-
-
-<section class="section-content-block section-secondary-bg">
-
-    <div class="container">
-
-        <div class="contact-form-block">
-
-            <h2 class="contact-title">Login</h2>
-
-            <form role="form" method="post" id="contact-form">
-                {% csrf_token %}
-
-                <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email"
-                           data-msg="Please Write Your Valid Email"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter your passcode" name="password">
-                </div>
-                 <a href="/forgot/">Forgot Code?</a>
-                <div class="form-group">
-                    <button type="submit" class="submit-btn">SIGN IN</button>
-                </div>
-
-            </form>
-
-        </div> <!-- end .contact-form-block  -->
-
-
-    </div> <!--  end .container -->
-
-</section> <!-- end .section-content-block  -->
-<script>var page_name = "client_login.html";</script>
-<!-- START FOOTER  -->
-{% endblock %}

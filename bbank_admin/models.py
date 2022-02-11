@@ -14,6 +14,7 @@ class Bloodbank(models.Model):
     b_id = models.AutoField(primary_key=True)
     b_name = models.CharField(max_length=50)
     b_address = models.CharField(max_length=300, null=False)
+    b_img = models.FileField()
     b_email = models.EmailField(unique=True)
     b_pwd = models.CharField(max_length=15)
     b_contact = models.BigIntegerField()
@@ -22,6 +23,33 @@ class Bloodbank(models.Model):
 
     class Meta:
         db_table = "bloodbank_bloodbank"
+
+
+class Blood_grp(models.Model):
+    bloodgrp_id = models.AutoField(primary_key=True)
+    bloodgrp_type = models.CharField(max_length=5)
+
+    class Meta:
+        db_table = "bloodbank_bloods_grp"
+
+
+class User(models.Model):
+    u_id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=10)
+    last_name = models.CharField(max_length=10)
+    bloodgrp_id = models.ForeignKey(Blood_grp, on_delete=models.CASCADE)
+    Gender = models.CharField(max_length=20)
+    email = models.CharField(max_length=30)
+    dob = models.DateTimeField()
+    user_weight = models.IntegerField()
+    contact_no = models.BigIntegerField()
+    id_proof = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
+    password = models.CharField(max_length=8)
+    area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "bloodbank_user"
 
 
 class Event(models.Model):
@@ -36,14 +64,6 @@ class Event(models.Model):
 
     class Meta:
         db_table = "bloodbank_event"
-
-
-class Blood_grp(models.Model):
-    bloodgrp_id = models.AutoField(primary_key=True)
-    bloodgrp_type = models.CharField(max_length=5)
-
-    class Meta:
-        db_table = "bloodbank_bloods_grp"
 
 
 class Blood_stock(models.Model):
@@ -68,49 +88,9 @@ class Van(models.Model):
         db_table = "bloodbank_van"
 
 
-class Donor(models.Model):
-    d_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=10)
-    last_name = models.CharField(max_length=10)
-    bloodgrp_id = models.ForeignKey(Blood_grp, on_delete=models.CASCADE)
-    Gender = models.CharField(max_length=20)
-    email = models.CharField(max_length=30)
-    dob = models.DateField()
-    donor_weight = models.IntegerField()
-    contact_no = models.BigIntegerField()
-    id_proof = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    password = models.CharField(max_length=8)
-    area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
-    d_otp = models.CharField(max_length=10, null=True)
-    d_otp_used = models.IntegerField()
-
-    class Meta:
-        db_table = "bloodbank_donor"
-
-
-class Receiver(models.Model):
-    receiver_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=10)
-    last_name = models.CharField(max_length=10)
-    bloodgrp_id = models.ForeignKey(Blood_grp, on_delete=models.CASCADE)
-    Gender = models.CharField(max_length=20)
-    email = models.CharField(max_length=30)
-    password = models.CharField(max_length=8)
-    dob = models.DateField()
-    receiver_weight = models.IntegerField()
-    contact_no = models.BigIntegerField()
-    id_proof = models.CharField(max_length=20)
-    address = models.CharField(max_length=100)
-    area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = "bloodbank_receiver"
-
-
 class Appointment(models.Model):
     appointment_id = models.AutoField(primary_key=True)
-    d_id = models.ForeignKey(Donor, on_delete=models.CASCADE)
+    u_id = models.ForeignKey(User, on_delete=models.CASCADE)
     given_date = models.DateTimeField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
     appointment_status = models.CharField(max_length=20)
@@ -122,7 +102,7 @@ class Appointment(models.Model):
 
 class Request_blood(models.Model):
     request_id = models.AutoField(primary_key=True)
-    receiver_id = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    u_id = models.ForeignKey(User, on_delete=models.CASCADE)
     bloodgrp_id = models.ForeignKey(Blood_grp, on_delete=models.CASCADE)
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
     status = models.CharField(max_length=20)
@@ -150,7 +130,7 @@ class Admin(models.Model):
     admin_contact = models.CharField(max_length=15)
     admin_password = models.CharField(max_length=15)
     admin_dob = models.DateField()
-    admin_gender = models.BooleanField()
+    admin_gender = models.CharField(max_length=7)
     otp = models.CharField(max_length=10, null=True)
     otp_used = models.IntegerField()
     is_admin = models.IntegerField()
@@ -161,8 +141,7 @@ class Admin(models.Model):
 
 class Feedback(models.Model):
     f_id = models.AutoField(primary_key=True)
-    d_id = models.ForeignKey(Donor, on_delete=models.CASCADE)
-    receiver_id = models.ForeignKey(Receiver, on_delete=models.CASCADE)
+    u_id = models.ForeignKey(User, on_delete=models.CASCADE)
     feedback_b=models.CharField(max_length=200)
     f_date = models.DateTimeField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)

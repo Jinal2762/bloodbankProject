@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 
-<h3 class="text-22 text-midnight text-bold mb-4">Receiver Form</h3>
-<form method="POST" action="/receiver_form/">
+<h3 class="text-22 text-midnight text-bold mb-4">User Form</h3>
+<form method="POST" action="/user_form/">
     {% csrf_token %}
      <div class="form-group">
         <div class="input-label">
@@ -48,7 +48,7 @@
         <div class="input-label">
             <label>Receiver Weight</label>
         </div>
-        <input type="number" class="form-control" value="" name="receiver_weight">
+        <input type="number" class="form-control" value="" name="user_weight">
     </div>
     <div class="form-group col-md-4">
         <label>Contact Number</label>

@@ -1,20 +1,20 @@
 from django.shortcuts import render, redirect
-from bbank_admin.forms import DonorForm
-from bbank_admin.models import Donor,Bloodbank
+from bbank_admin.forms import UserForm
+from bbank_admin.models import User,Bloodbank
 
 
 def login(request):
     if request.method == "POST":
         d_email = request.POST.get("email")
         pas = request.POST.get("password")
-        val = Donor.objects.filter(email=d_email, pas=password).count()
+        val = User.objects.filter(email=d_email, pas=password).count()
         print("------------------", d_email, "-----------------", pas)
         if val == 1:
-            data = Donor.objects.filter(email=d_email, password=pas)
+            data = User.objects.filter(email=d_email, password=pas)
             for item in data:
-                request.session['donor_email'] = item.email
-                request.session['donor_pass'] = item.password
-                request.session['donor_id'] = item.d_id
+                request.session['user_email'] = item.email
+                request.session['user_pass'] = item.password
+                request.session['user_id'] = item.d_id
                 return redirect('/home/')
         else:
             messages.error(request, "Invalid user name and password")
@@ -33,10 +33,10 @@ def send_otpc(request):
 
     request.session['temail'] = e
     print("===EMAILLLL===", e)
-    obj = Donor.objects.filter(admin_email=e).count()
+    obj = User.objects.filter(admin_email=e).count()
     print("===OBJECTTTTTTT==", obj)
     if obj == 1:
-        val = Donor.objects.filter(email=e).update(d_otp=otp1, d_otp_used=0)
+        val = User.objects.filter(email=e).update(d_otp=otp1, d_otp_used=0)
 
         subject = 'OTP Verification'
         message = str(otp1)
@@ -58,10 +58,10 @@ def resetc(request):
         if T_pass == T_cpass:
             print("=====PASSWORDDDDDDDDDDDDDDD=====", T_pass, T_cpass)
             e = request.session['temail']
-            val = Donor.objects.filter(email=e, otp=T_otp, otp_used=0).count()
+            val = User.objects.filter(email=e, otp=T_otp, otp_used=0).count()
             print("===========", val)
             if val == 1:
-                Donor.objects.filter(email=e).update(d_otp_used=1, password=T_pass)
+                User.objects.filter(email=e).update(d_otp_used=1, password=T_pass)
                 return redirect("/client_login")
             else:
                 messages.error(request, "Invalid OTP")
@@ -93,11 +93,15 @@ def autosuggest(request):
 
 def search(request):
     if request.method == "POST":
-        name = request.POST["b_name"]
-        p = Bloodbank.objects.filter(b_name=name)
+        name = request.POST["bloodgrp_type"]
+        p = Bloodbank.objects.filter(bloodgrp_type=name)
 
     else:
         p = Bloodbank.objects.all()
 
     return render(request, "bloodbank.html", {"p": p})
+
+
+def bbank_details(request):
+    return render(request, "bbank-details.html")
 
