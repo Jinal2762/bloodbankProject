@@ -23,11 +23,11 @@ def login(request):
         return render(request, "client_login.html")
 
 
-def forgotc(request):
+def forgot(request):
     return render(request, 'forgot.html')
 
 
-def send_otpc(request):
+def send_otp(request):
     otp1 = random.randint(10000, 99999)
     e = request.POST.get('email')
 
@@ -48,7 +48,7 @@ def send_otpc(request):
     return render(request, 'set_password.html')
 
 
-def resetc(request):
+def reset(request):
     if request.method == "POST":
 
         T_otp = request.POST.get('d_otp')

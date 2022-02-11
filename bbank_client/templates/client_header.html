@@ -83,11 +83,14 @@
                     </button>
                     <a class="logo" href="index.html"><img alt="" src="{% static 'v_2/images/logo.png' %}"></a>
                 </div>
-                <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search...." id="search_pro" name="b_name">
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                </div>
-                <input type="hidden" value="submit" />
+                <form method="post" action="/search_product/">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search...." id="search_pro"
+                               name="b_name">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="hidden" value="submit"/>
+                </form>
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -397,15 +400,16 @@
 
 <!-- Mirrored from templates.bwlthemes.com/blood_donation/v_2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jan 2022 05:00:48 GMT -->
 </html>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <script>
   $( function() {
 
     $( "#search_pro" ).autocomplete({
-      source: '{% url 'pro_search'  %}'
+      source: '{% url 'pro_search' %}'
 
     });
   });
+
+
 </script>
