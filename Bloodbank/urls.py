@@ -76,4 +76,6 @@ urlpatterns = [
     url(r'charthome', HomeView.as_view(), name='home'),
     url(r'^api/chart/data/$', ProjectChart.as_view(), name="api-data"),
     path('client/', include('bbank_client.client_urls')),
+    path('accepted_app/<int:id>',views.accept_appointment),
+    path('rejected_app/<int:id>',views.reject_appointment),
 ]
