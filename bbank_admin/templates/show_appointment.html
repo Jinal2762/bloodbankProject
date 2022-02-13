@@ -22,7 +22,7 @@
                     <thead>
                     <tr>
                         <th>Appoinment Id</th>
-                        <th>Donor Id</th>
+                        <th>User Name</th>
                         <th>Appoinment Date</th>
                         <th>Bloodbank Id</th>
                         <th>Appoinment Status</th>
@@ -35,7 +35,7 @@
                     {% for data in a %}
                     <tr>
                         <td>{{data.appointment_id}}</td>
-                        <td>{{ data.d_id }}</td>
+                        <td>{{ data.u_id }}</td>
                         <td>{{ data.given_date }}</td>
                         <td>{{ data.b_id }}</td>
                         <td>{{ data.appointment_status }}</td>

@@ -3,7 +3,7 @@
 {% block content %}
 
 <h3 class="text-22 text-midnight text-bold mb-4">Bloodbank Form</h3>
-<form method="post" action="/bbank_form/">
+<form method="post" action="/bbank_form/"  enctype="multipart/form-data">
     {% csrf_token %}
        <div class="form-group">
         <div class="input-label">
@@ -29,6 +29,12 @@
          </div>
          <input type="password" class="form-control" value="" name="b_pwd">
      </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label>Image</label>
+        </div>
+        <input type="file" class="form-control" name="b_img">
+    </div>
     <div class="form-group col-md-4">
         <label>Contact Number</label>
         <input type="number" class="form-control" value="" name="b_contact" placeholder="Enter contact number here">

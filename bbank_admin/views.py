@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from bbank_admin.function import handle_uploded_file
-from bbank_admin.forms import AdminForm, AreaForm, VanForm, Blood_grpForm, DonorForm, ReceiverForm, BbankForm, \
-    HospitalsForm, FeedbackForm, Blood_stockForm, AppointmentForm, Request_bloodForm, EventForm, GalleryForm
-from bbank_admin.models import Area, Blood_grp, Donor, Receiver, Bloodbank, Hospitals, Feedback, Blood_stock, \
-    Appointment, Request_blood, Admin, Event, Gallery, Van
+from bbank_admin.forms import AdminForm, AreaForm, VanForm, Blood_grpForm, BbankForm, UserForm, FeedbackForm, Blood_stockForm, AppointmentForm, Request_bloodForm, EventForm, GalleryForm
+from bbank_admin.models import Area, Blood_grp, Bloodbank, Feedback, Blood_stock, User, Appointment, Request_blood, Admin, Event, Gallery, Van
 import random
 import sys
 from django.conf import settings
@@ -26,24 +24,14 @@ def show_bgrp(request):
     return render(request, "show_bgrp.html", {'bgrps': bgrp})
 
 
-def show_donor(request):
-    donor = Donor.objects.all()
-    return render(request, "show_donor.html", {'donors': donor})
-
-
-def show_receiver(request):
-    receiver = Receiver.objects.all()
-    return render(request, "show_receiver.html", {'receivers': receiver})
+def show_user(request):
+    user = User.objects.all()
+    return render(request, "show_user.html", {'users': user})
 
 
 def show_bbank(request):
     bbank = Bloodbank.objects.all()
     return render(request, "show_bbank.html", {'bbanks': bbank})
-
-
-def show_hospital(request):
-    hosp = Hospitals.objects.all()
-    return render(request, "show_hospital.html", {'hospitals': hosp})
 
 
 def show_stock(request):
@@ -156,11 +144,9 @@ def reset(request):
 
 
 def index(request):
-    don = Donor.objects.filter().count()
-    rec = Receiver.objects.filter().count()
+    user = User.objects.filter().count()
     bb = Bloodbank.objects.filter().count()
-    hos = Hospitals.objects.filter().count()
-    return render(request, "dashboard.html", {'don': don, 'rec': rec, 'bb': bb, 'hos': hos})
+    return render(request, "dashboard.html", {'user':user , 'bb': bb })
 
 
 def edit_admin_profile(request):
@@ -218,7 +204,7 @@ def destroy_area(request, area_id):
 
 
 def insert_appointment(request):
-    temp = Donor.objects.all()
+    temp = User.objects.all()
     flag = Bloodbank.objects.all()
     if request.method == "POST":
         form = AppointmentForm(request.POST)
@@ -235,7 +221,7 @@ def insert_appointment(request):
 
 
 def edit_appointment(request, id):
-    flag = Donor.objects.all()
+    flag = User.objects.all()
     temp = Bloodbank.objects.all()
     appointment = Appointment.objects.get(appointment_id=id)
     if request.method == "POST":
@@ -259,6 +245,7 @@ def insert_bbank(request):
         print("-----------", form.errors)
         if form.is_valid():
             try:
+                handle_uploded_file(request.FILES['b_img'])
                 form.save()
                 return redirect('/show_bbank')
             except:
@@ -285,39 +272,6 @@ def destroy_bbank(request, b_id):
     bbank = Bloodbank.objects.get(b_id=b_id)
     bbank.delete()
     return redirect("/show_bbank")
-
-
-def insert_hospital(request):
-    flag = Area.objects.all()
-    if request.method == "POST":
-        form = HospitalsForm(request.POST)
-        print("----------", form.errors)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/show_hospital')
-            except:
-                print("----------", sys.exc_info())
-    else:
-        form = HospitalsForm()
-    return render(request, 'hospital_form.html', {'form': form, 'flag': flag})
-
-
-def edit_hospital(request, id):
-    flag = Area.objects.all()
-    hospital = Hospitals.objects.get(h_id=id)
-    if request.method == "POST":
-        form = HospitalsForm(request.POST, instance=hospital)
-        if form.is_valid():
-            form.save()
-            return redirect("/show_hospital")
-    return render(request, "edit_hospital.html", {'hospital': hospital, 'flag': flag})
-
-
-def destroy_hospital(request, h_id):
-    hospital = Hospitals.objects.get(h_id=h_id)
-    hospital.delete()
-    return redirect("/show_hospital")
 
 
 def insert_bloodgrp(request):
@@ -390,8 +344,7 @@ def destroy_stock(request, stock_id):
 
 def insert_bloodrequest(request):
     flag = Bloodbank.objects.all()
-    temp = Hospitals.objects.all()
-    temp1 = Receiver.objects.all()
+    temp1 = User.objects.all()
     temp2 = Blood_grp.objects.all()
     if request.method == "POST":
         form = Request_bloodForm(request.POST)
@@ -405,13 +358,12 @@ def insert_bloodrequest(request):
     else:
         form = Request_bloodForm()
     return render(request, 'bloodrequest_form.html',
-                  {'form': form, 'flag': flag, 'temp': temp, 'temp1': temp1, 'temp2': temp2})
+                  {'form': form, 'flag': flag, 'temp1': temp1, 'temp2': temp2})
 
 
 def edit_request(request, id):
     flag = Bloodbank.objects.all()
-    temp = Hospitals.objects.all()
-    temp1 = Receiver.objects.all()
+    temp1 = User.objects.all()
     temp2 = Blood_grp.objects.all()
     b_request = Request_blood.objects.get(request_id=id)
     if request.method == "POST":
@@ -420,7 +372,7 @@ def edit_request(request, id):
             form.save()
             return redirect("/show_requestblood")
     return render(request, "edit_request.html",
-                  {'b_request': b_request, 'flag': flag, 'temp': temp, 'temp1': temp1, 'temp2': temp2})
+                  {'b_request': b_request, 'flag': flag, 'temp1': temp1, 'temp2': temp2})
 
 
 def destroy_request(request, request_id):
@@ -441,7 +393,7 @@ def insert_van(request):
             except:
                 print("----------", sys.exc_info())
     else:
-        form = BbankForm()
+        form = VanForm()
     return render(request, 'vanscheduling_form.html', {'form': form, 'flag': flag})
 
 
@@ -477,7 +429,6 @@ def insert_gallery(request):
     print("====INSIDE FUNCTION====")
     flag = Bloodbank.objects.all()
     print("========", flag)
-    temp = Hospitals.objects.all()
     temp2 = Event.objects.all()
     if request.method == "POST":
         form = GalleryForm(request.POST, request.FILES)
@@ -491,12 +442,11 @@ def insert_gallery(request):
                 print("-----*********-----", sys.exc_info())
     else:
         form = GalleryForm()
-    return render(request, 'gallery_form.html', {'form': form, 'flag': flag, 'temp': temp, 'temp2': temp2})
+    return render(request, 'gallery_form.html', {'form': form, 'flag': flag,'temp2': temp2})
 
 
 def edit_gallery(request, id):
     flag = Bloodbank.objects.all()
-    temp = Hospitals.objects.all()
     temp2 = Event.objects.all()
     gallery = Gallery.objects.get(gallery_id=id)
     if request.method == "POST":
@@ -513,47 +463,46 @@ def destroy_gallery(request, gallery_id):
     return redirect("/show_gallery")
 
 
-def insert_receiver(request):
+def insert_user(request):
     flag = Area.objects.all()
     temp = Blood_grp.objects.all()
     if request.method == "POST":
-        form = ReceiverForm(request.POST)
-        print("-----------", form.errors)
+        form = UserForm(request.POST)
+        print("-----88------", form.errors)
         if form.is_valid():
             try:
                 form.save()
-                return redirect('/show_receiver')
+                return redirect('/show_user')
             except:
-                print("----------", sys.exc_info())
+                print("-----99-----", sys.exc_info())
     else:
-        form = FeedbackForm()
-    return render(request, 'receiver_form.html', {'form': form, 'flag': flag, 'temp': temp})
+        form = UserForm()
+    return render(request, 'user_form.html', {'form': form, 'flag': flag, 'temp': temp})
 
 
-def edit_receiver(request, id):
+def edit_user(request, id):
     flag = Area.objects.all()
     temp = Blood_grp.objects.all()
-    receiver = Receiver.objects.get(receiver_id=id)
+    user = User.objects.get(u_id=id)
     if request.method == "POST":
-        form = ReceiverForm(request.POST, instance=receiver)
+        form = UserForm(request.POST, instance=user)
         print('9===========', form.errors)
         if form.is_valid():
             form.save()
             print('------------', sys.exc_info())
-            return redirect("/show_receiver")
-    return render(request, "edit_receiver.html", {'receiver': receiver, 'flag': flag, 'temp': temp})
+            return redirect("/show_user")
+    return render(request, "edit_user.html", {'user': user, 'flag': flag, 'temp': temp})
 
 
-def destroy_receiver(request, receiver_id):
-    receiver = Receiver.objects.get(receiver_id=receiver_id)
-    receiver.delete()
-    return redirect("/show_receiver")
+def destroy_user(request, u_id):
+    user = User.objects.get(u_id=u_id)
+    user.delete()
+    return redirect("/show_user")
 
 
 def insert_event(request):
     flag = Bloodbank.objects.all()
     temp = Area.objects.all()
-    temp2 = Hospitals.objects.all()
     if request.method == "POST":
         form = EventForm(request.POST, request.FILES)
         print("-----------", request.POST.get('e_img'))
@@ -568,63 +517,25 @@ def insert_event(request):
                 print("----------", sys.exc_info())
     else:
         form = EventForm()
-    return render(request, 'events_form.html', {'form': form, 'flag': flag, 'temp': temp, 'temp2': temp2})
+    return render(request, 'events_form.html', {'form': form, 'flag': flag, 'temp': temp})
 
 
 def edit_event(request, id):
     flag = Bloodbank.objects.all()
     temp = Area.objects.all()
-    temp2 = Hospitals.objects.all()
     event = Event.objects.get(event_id=id)
     if request.method == "POST":
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
             return redirect("/show_events")
-    return render(request, "edit_event.html", {'event': event, 'flag': flag, 'temp': temp, 'temp2': temp2})
+    return render(request, "edit_event.html", {'event': event, 'flag': flag, 'temp': temp})
 
 
 def destroy_events(request, event_id):
     event = Event.objects.get(event_id=event_id)
     event.delete()
     return redirect("/show_events")
-
-
-def insert_donor(request):
-    flag = Area.objects.all()
-    temp = Blood_grp.objects.all()
-    if request.method == "POST":
-        form = DonorForm(request.POST)
-        print("-----------", form.errors)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/show_donor')
-            except:
-                print("----------", sys.exc_info())
-    else:
-        form = FeedbackForm()
-    return render(request, 'donor_form.html', {'form': form, 'flag': flag, 'temp': temp})
-
-
-def edit_donor(request, id):
-    flag = Area.objects.all()
-    temp = Blood_grp.objects.all()
-    b_donor = Donor.objects.get(d_id=id)
-    if request.method == "POST":
-        form = DonorForm(request.POST, instance=b_donor)
-        print('9===========', form.errors)
-        if form.is_valid():
-            form.save()
-            print('------------', sys.exc_info())
-            return redirect("/show_donor")
-    return render(request, "edit_donor.html", {'b_donor': b_donor, 'flag': flag, 'temp': temp})
-
-
-def destroy_donor(request, d_id):
-    donor = Donor.objects.get(d_id=d_id)
-    donor.delete()
-    return redirect("/show_donor")
 
 
 class HomeView(View):
@@ -639,7 +550,7 @@ class ProjectChart(APIView):
     def get(self, request, format=None):
         cursor = connection.cursor()
         cursor.execute(
-            '''SELECT * from bloodbank_donor''')
+            '''SELECT * from bloodbank_area''')
         qs = cursor.fetchall()
         print("=====0", qs)
         labels = []
@@ -652,3 +563,4 @@ class ProjectChart(APIView):
             "default": default_items,
         }
         return Response(data)
+

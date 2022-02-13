@@ -1,10 +1,8 @@
 from django import forms
 from bbank_admin.models import Area
 from bbank_admin.models import Blood_grp
-from bbank_admin.models import Donor
-from bbank_admin.models import Receiver
+from bbank_admin.models import User
 from bbank_admin.models import Bloodbank
-from bbank_admin.models import Hospitals
 from bbank_admin.models import Blood_stock
 from bbank_admin.models import Appointment
 from bbank_admin.models import Request_blood
@@ -33,30 +31,17 @@ class Blood_grpForm(forms.ModelForm):
         fields = ["bloodgrp_type"]
 
 
-class DonorForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
     class Meta:
-        model = Donor
-        fields = ["first_name", "last_name", "bloodgrp_id", "Gender", "email", "dob", "donor_weight", "contact_no",
-                  "id_proof", "address", "password", "area_id"]
-
-
-class ReceiverForm(forms.ModelForm):
-    class Meta:
-        model = Receiver
-        fields = ["first_name", "last_name", "bloodgrp_id", "Gender", "email", "dob", "receiver_weight", "contact_no",
+        model = User
+        fields = ["first_name", "last_name", "bloodgrp_id", "Gender", "email", "dob", "user_weight", "contact_no",
                   "id_proof", "address", "password", "area_id"]
 
 
 class BbankForm(forms.ModelForm):
     class Meta:
         model = Bloodbank
-        fields = ["b_name", "b_address", "b_email", "b_pwd", "b_contact", "b_timing", "area_id"]
-
-
-class HospitalsForm(forms.ModelForm):
-    class Meta:
-        model = Hospitals
-        fields = ["h_name", "h_address", "h_email", "h_pwd", "h_contact", "area_id"]
+        fields = ["b_name", "b_address", "b_email", "b_pwd", "b_img", "b_contact", "b_timing", "area_id"]
 
 
 class Blood_stockForm(forms.ModelForm):
@@ -68,13 +53,13 @@ class Blood_stockForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ["d_id", "b_id", "given_date", "appointment_status", "appointment_time"]
+        fields = ["u_id", "b_id", "given_date", "appointment_status", "appointment_time"]
 
 
 class Request_bloodForm(forms.ModelForm):
     class Meta:
         model = Request_blood
-        fields = ["receiver_id", "h_id", "bloodgrp_id", "b_id", "status", "qty"]
+        fields = ["u_id", "bloodgrp_id", "b_id", "status", "qty"]
 
 
 class EventForm(forms.ModelForm):
@@ -82,7 +67,7 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ["e_name", 'e_date', 'b_id', 'e_des', 'e_img', 'e_location', 'h_id', 'area_id']
+        fields = ["e_name", 'e_date', 'b_id', 'e_des', 'e_img', 'e_location', 'area_id']
 
 
 class VanForm(forms.ModelForm):
@@ -96,13 +81,13 @@ class GalleryForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
-        fields = ["h_id", "img_path", "event_id", "b_id"]
+        fields = [ "img_path", "event_id", "b_id"]
 
 
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
-        fields = ["d_id", "receiver_id", "feedback_b", "f_date", "b_id"]
+        fields = ["u_id", "feedback_b", "f_date", "b_id"]
 
 
 class AdminForm(forms.ModelForm):

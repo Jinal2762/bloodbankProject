@@ -27,21 +27,11 @@
     </div>
     <div class="form-group">
         <div class="input-label">
-            <label for="exampleFormControlSelect3">Hospital</label>
+            <label for="exampleFormControlSelect4">User</label>
         </div>
-        <select name="h_id" class="form-control" id="exampleFormControlSelect3">
-           {% for data in temp %}
-                <option value="{{data.h_id}}">{{data.h_name}}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="form-group">
-        <div class="input-label">
-            <label for="exampleFormControlSelect4">Receiver</label>
-        </div>
-        <select name="receiver_id" class="form-control" id="exampleFormControlSelect4">
+        <select name="u_id" class="form-control" id="exampleFormControlSelect4">
            {% for data in temp1 %}
-                <option value="{{data.receiver_id}}">{{data.first_name}}</option>
+                <option value="{{data.u_id}}">{{data.first_name}}</option>
             {% endfor %}
         </select>
     </div>
