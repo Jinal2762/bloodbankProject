@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from bbank_admin.forms import UserForm
-from bbank_admin.models import User,Bloodbank
+from bbank_admin.models import User, Bloodbank, Appointment
 
 
 def login(request):
@@ -104,4 +104,15 @@ def search(request):
 
 def bbank_details(request):
     return render(request, "bbank-details.html")
+
+
+def appointment_details(request):
+    a = Appointment.objects.all()
+    print("=========INSIDE FUNCRION", a)
+    return render(request, "appointment_details.html", {'a': a})
+
+
+def bbank_directory(request):
+    bbank = Bloodbank.objects.all()
+    return render(request, "bbank_directory.html", {'bbanks': bbank})
 

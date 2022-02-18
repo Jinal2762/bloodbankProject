@@ -570,14 +570,14 @@ def accept_appointment(request,id):
     a.appointment_status='1'
     a.save()
 
-    name=a.user_id.user_name
+    name=a.u_id.first_name
     print('love you',name)
-    e=a.user_id.user_email
+    e=a.u_id.email
     subject="appointment accpeted"
     message="hey"+" "+name+",your appointment has been accepted"
     email_from=settings.EMAIL_HOST_USER
     recepient_list=[e, ]
-    send_mail(subject,message,email_from,recepeint_list)
+    send_mail(subject,message,email_from,recepient_list)
     return redirect("/show_appointment")
 
 
@@ -586,12 +586,12 @@ def reject_appointment(request,id):
     a.appointment_status = '2'
     a.save()
 
-    name = a.user_id.user_name
+    name = a.u_id.first_name
     print('love you', name)
-    e = a.user_id.user_email
+    e = a.u_id.email
     subject = "appointment rejected"
     message = "hey" + " " + name + ",your appointment has been rejected"
     email_from = settings.EMAIL_HOST_USER
     recepient_list = [e, ]
-    send_mail(subject, message, email_from, recepeint_list)
+    send_mail(subject, message, email_from, recepient_list)
     return redirect("/show_appointment")

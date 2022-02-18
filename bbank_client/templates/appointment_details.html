@@ -1,0 +1,30 @@
+{% extends "client_header.html" %}
+{% load static %}
+{% block content %}
+
+<table id="Area-Table" class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Appoinment Id</th>
+        <th>User Id</th>
+        <th>Appoinment Date</th>
+        <th>Bloodbank Id</th>
+        <th>Appoinment Status</th>
+        <th>Appoinment Time</th>
+    </tr>
+    </thead>
+    <tbody>
+     {% for data in a %}
+     <tr>
+         <td>{{data.appointment_id}}</td>
+         <td>{{ data.u_id }}</td>
+         <td>{{ data.given_date }}</td>
+         <td>{{ data.b_id }}</td>
+         <td>{{ data.appointment_status }}</td>
+         <td>{{ data.appointment_time }}</td>
+     </tr>
+     {% endfor %}
+</table>
+
+
+{% endblock %}
