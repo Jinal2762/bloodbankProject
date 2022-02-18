@@ -39,9 +39,28 @@
                         <td>{{ data.given_date }}</td>
                         <td>{{ data.b_id }}</td>
                         <td>{{ data.appointment_status }}</td>
+
                         <td>{{ data.appointment_time }}</td>
                         <td><a href="/delete_appon/{{ data.appointment_id }}">Delete</a></td>
                         <td><a href="/edit_appointment/{{ data.appointment_id }}">Update</a></td>
+                        <td>
+                        {% if data.appointment_status == 0 %}
+                        Pending
+                        </td>
+                        <td>
+                        {% elif data.appointment_status == 1 %}
+                        Accepted
+                        </td>
+                        <td>
+                        {% elif data.appointment_status == 2 %}
+                        Rejected
+                        {% endif %}
+                        </td>
+                        <td>{{ data.appointment_status }}</td>
+                        <td>
+                        <a href="/accepted_app/{{data.appointment_id}}">accept</a>
+                        <a href="/rejected_app/{{data.appointment_id}}">reject</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>

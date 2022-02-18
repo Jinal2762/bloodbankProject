@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from bbank_admin.forms import UserForm
-from bbank_admin.models import User,Bloodbank
+from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp
+import random
 
 
 def login(request):
@@ -27,13 +28,13 @@ def forgot(request):
     return render(request, 'forgot.html')
 
 
-def send_otp(request):
+def sendotp(request):
     otp1 = random.randint(10000, 99999)
     e = request.POST.get('email')
 
     request.session['temail'] = e
     print("===EMAILLLL===", e)
-    obj = User.objects.filter(admin_email=e).count()
+    obj = User.objects.filter(email=e).count()
     print("===OBJECTTTTTTT==", obj)
     if obj == 1:
         val = User.objects.filter(email=e).update(d_otp=otp1, d_otp_used=0)
@@ -62,7 +63,7 @@ def reset(request):
             print("===========", val)
             if val == 1:
                 User.objects.filter(email=e).update(d_otp_used=1, password=T_pass)
-                return redirect("/client_login")
+                return redirect("client/client_login")
             else:
                 messages.error(request, "Invalid OTP")
                 return render(request, "forgot.html")
@@ -72,7 +73,7 @@ def reset(request):
             return render(request, "set_password.html")
 
     else:
-        return redirect("/forgot")
+        return redirect("client/forgot")
 
 
 def home(request):
@@ -105,3 +106,27 @@ def search(request):
 def bbank_details(request):
     return render(request, "bbank-details.html")
 
+def show_appointment_details(request):
+    a = Appointment.objects.all()
+    print("=========INSIDE FUNCTION", a)
+    return render(request, "appointment_details.html", {'a': a})
+
+def aboutus(request):
+    return render(request, "about_us.html")
+
+
+def client_register(request):
+    bloodgroup = Blood_grp.objects.all()
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        print("-------------", form.errors)
+        print("======", request.POST['is_admin'])
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/client/client_login')
+            except:
+                print("---------------", sys.exc_info())
+    else:
+        form = UserForm()
+    return render(request, 'registration.html', {'form': form, "bloodgroup": bloodgroup})

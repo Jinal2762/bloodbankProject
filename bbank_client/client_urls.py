@@ -6,10 +6,13 @@ import include
 urlpatterns = [
     path('client_login/', client_views.login),
     path('forgot/', client_views.forgot),
-    path('send_otp/', client_views.send_otp),
-    path('set_password/', client_views.reset),
+    path('send_otp/', client_views.sendotp),
+    path('reset/', client_views.reset),
+    path('about_us/',client_views.aboutus),
     path('home/', client_views.home),
     path('bbank_details/', client_views.bbank_details),
     path('search_product/', client_views.autosuggest, name='pro_search'),
     path('search12/', client_views.search),
+    path('appointment_details/', client_views.show_appointment_details),
+    path('registration/',client_views.client_register),
 ]

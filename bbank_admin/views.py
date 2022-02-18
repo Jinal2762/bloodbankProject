@@ -239,15 +239,16 @@ def destroy_appointment(request, appointment_id):
 
 
 def insert_bbank(request):
+    print("====INSIDE FUNCTION====")
     temp = Area.objects.all()
     if request.method == "POST":
-        form = BbankForm(request.POST)
-        print("-----------", form.errors)
+        form = BbankForm(request.POST, request.FILES)
+        print("-----**********------", form.errors)
         if form.is_valid():
             try:
                 handle_uploded_file(request.FILES['b_img'])
                 form.save()
-                return redirect('/show_bbank')
+                return redirect('/show_bbank/')
             except:
                 print("---hello-------", sys.exc_info())
     else:
@@ -564,3 +565,33 @@ class ProjectChart(APIView):
         }
         return Response(data)
 
+def accept_appointment(request,id):
+    a = Appointment.objects.get(appointment_id=id)
+    a.appointment_status='1'
+    a.save()
+
+    name=a.u_id.first_name
+    print('love you',name)
+    e=a.u_id.email
+    subject="appointment accpeted"
+    message="hey"+" "+name+",your appointment has been accepted"
+    email_from=settings.EMAIL_HOST_USER
+    recepient_list=[e, ]
+    send_mail(subject,message,email_from,recepient_list)
+    return redirect("/show_appointment")
+
+
+def reject_appointment(request,id):
+    a = Appointment.objects.get(appointment_id=id)
+    a.appointment_status = '2'
+    a.save()
+
+    name = a.u_id.first_name
+    print('love you', name)
+    e = a.u_id.email
+    subject = "appointment rejected"
+    message = "hey" + " " + name + ",your appointment has been rejected"
+    email_from = settings.EMAIL_HOST_USER
+    recepient_list = [e, ]
+    send_mail(subject, message, email_from, recepient_list)
+    return redirect("/show_appointment")

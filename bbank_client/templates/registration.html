@@ -1,0 +1,136 @@
+{% extends "client_header.html" %}
+{% load static %}
+{% block content %}
+<section class="page-header" data-stellar-background-ratio="1.2">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12 text-center">
+
+
+            </div>
+
+        </div> <!-- end .row  -->
+
+    </div> <!-- end .container  -->
+
+</section> <!-- end .page-header  -->
+
+<!--  MAIN CONTENT  -->
+
+
+<section class="section-content-block section-secondary-bg">
+
+    <div class="container">
+
+        <div class="contact-form-block">
+
+            <h2 class="contact-title">Registration</h2>
+
+            <form role="form" action="/bb_client/client_register/{{User.u_id}}" method="post">
+                {% csrf_token %}
+
+
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="First_Name" name="first_name"
+                           value="{{User.first_name}}" placeholder="First Name"
+                           data-msg="Please Write Your First name"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="Last_Name" name="last_name" value="{{User.last_name}}"
+                           placeholder="Last Name"
+                           data-msg="Please Write Your Last Name"/>
+                </div>
+
+                <!--                    <label for="BloodGroup_id">Blood Group</label>-->
+                <!--                    <input type="text" class="form-control" id="BloodGroup_id" name="BloodGroup_id" value="{{Donor.BloodGroup_id}}"-->
+                <!--                           placeholder="blood group">-->
+                <div class="form-group">
+                    <label>BloodGroup</label>
+                    <select class="form-control" name="bloodgrp_id">
+                        {% for data in Blood_grp %}
+                        <option value="{{data.bloodgrp_id}}">{{data.bloodgrp_type}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Gender">Gender</label>
+                    <input type="text" class="form-control" id="Gender" name="gender" value="{{User.gender}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="Email_id">Email ID</label>
+                    <input style="padding:20px;" type="email" class="form-control" id="Email_id" name="email"
+                           value="{{User.email}}"
+                           placeholder="Email ID"
+                           data-msg="Please Write Your Valid Email"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="Date_of_Birth">Date of Birth</label>
+                    <input type="date" class="form-control" id="Date_of_Birth" name="dob"
+                           value="{{User.dob}}">
+                </div>
+
+                <div class="form-group">
+                    <label>Weight</label>
+                    <input type="number" class="form-control" id="User_Weight" name="user_weight"
+                           value="{{User.user_weight}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="Contact_N0">Contact N0</label>
+                    <input type="number" class="form-control" id="Contact_N0" name="Contact_N0"
+                           value="{{Donor.Contact_N0}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="Id_Proof">ID Proof</label>
+                    <input type="text" class="form-control" id="Id_Proof" name="id_proof" value="{{User.id_proof}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="Address">Address</label>
+                    <input type="text" class="form-control" id="Address" name="address" value="{{User.address}}">
+                </div>
+
+                <div class="form-group">
+                    <label>Area</label>
+                    <select class="form-control" name="area_id">
+                        {% for data in Area %}
+                        <option value="{{data.area_id}}">{{data.area_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" id="Password" name="password"
+                           value="{{User.password}}">
+                </div>
+
+                <br>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-theme">Register</button>
+                </div>
+                <br>
+                <br>
+
+
+            </form>
+
+        </div> <!-- end .contact-form-block  -->
+
+
+    </div> <!--  end .container -->
+
+</section> <!-- end .section-content-block  -->
+
+<!-- START FOOTER  -->
+{% endblock %}
