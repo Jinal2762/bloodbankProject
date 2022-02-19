@@ -39,15 +39,10 @@
                         <td>{{ data.given_date }}</td>
                         <td>{{ data.b_id }}</td>
                         <td>{{ data.appointment_status }}</td>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8bf028fdbf31cd646f9b89d52481ce4a38a5d46e
                         <td>{{ data.appointment_time }}</td>
                         <td><a href="/delete_appon/{{ data.appointment_id }}">Delete</a></td>
                         <td><a href="/edit_appointment/{{ data.appointment_id }}">Update</a></td>
                         <td>
-<<<<<<< HEAD
                             {% if data.appointment_status == 0 %}
                             Pending
                         </td>
@@ -63,7 +58,6 @@
                         <td>
                             <a href="/accepted_app/{{data.appointment_id}}">accept</a>
                             <a href="/rejected_app/{{data.appointment_id}}">reject</a>
-=======
                         {% if data.appointment_status == 0 %}
                         Pending
                         </td>
@@ -80,7 +74,6 @@
                         <td>
                         <a href="/accepted_app/{{data.appointment_id}}">accept</a>
                         <a href="/rejected_app/{{data.appointment_id}}">reject</a>
->>>>>>> 8bf028fdbf31cd646f9b89d52481ce4a38a5d46e
                         </td>
                     </tr>
                     {% endfor %}

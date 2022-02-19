@@ -3,8 +3,6 @@ from bbank_admin.forms import UserForm
 from bbank_admin.models import User, Bloodbank, Appointment
 from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp
 import random
-
-
 def login(request):
     if request.method == "POST":
         d_email = request.POST.get("email")
@@ -107,6 +105,7 @@ def search(request):
 def bbank_details(request):
     return render(request, "bbank-details.html")
 
+
 def appointment_details(request):
     a = Appointment.objects.all()
     print("=========INSIDE FUNCRION", a)
@@ -117,14 +116,37 @@ def bbank_directory(request):
     bbank = Bloodbank.objects.all()
     return render(request, "bbank_directory.html", {'bbanks': bbank})
 
-=======
-def show_appointment_details(request):
-    a = Appointment.objects.all()
-    print("=========INSIDE FUNCTION", a)
-    return render(request, "appointment_details.html", {'a': a})
+
+def gallery(request):
+    return render(request, "gallery.html")
+
 
 def aboutus(request):
     return render(request, "about_us.html")
+
+
+def blood_availability(request):
+    return render(request, "b_availability.html")
+
+
+def blood_donate(request):
+    return render(request, "b_donate.html")
+
+
+def contact(request):
+    return render(request, "contact.html")
+
+
+def events(request):
+    return render(request, "events.html")
+
+
+def van_schedule(request):
+    return render(request, "van_schedule.html")
+
+
+def blood_request(request):
+    return render(request, "b_request.html")
 
 
 def client_register(request):
