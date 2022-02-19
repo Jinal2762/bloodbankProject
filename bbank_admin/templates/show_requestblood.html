@@ -22,8 +22,7 @@
                     <thead>
                     <tr>
                         <th>Request Id</th>
-                        <th>Receiver Id</th>
-                        <th>Hospital Id</th>
+                        <th>User Id</th>
                         <th>Blood Group Id</th>
                         <th>Bloodbank Id</th>
                         <th>Request Status</th>
@@ -36,8 +35,7 @@
                     {% for data in request_bloods %}
                     <tr>
                         <td>{{ data.request_id }}</td>
-                        <td>{{ data.receiver_id }}</td>
-                        <td>{{ data.h_id}}</td>
+                        <td>{{ data.u_id }}</td>
                         <td>{{ data.bloodgrp_id }}</td>
                         <td>{{ data.b_id}}</td>
                         <td>{{ data.status}}</td>

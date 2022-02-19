@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bbank_admin.apps.BbankAdminConfig',
+    'bbank_client.apps.BbankClientConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +57,8 @@ ROOT_URLCONF = 'Bloodbank.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'bbank_admin/templates'),
+                 os.path.join(BASE_DIR,'bbank_client/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,7 +127,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_DIRS = (os.path.join(BASE_DIR, 'bbank_admin/static/'),)
+STATIC_DIRS = (os.path.join(BASE_DIR, 'bbank_admin/static/'),(BASE_DIR, 'bbank_client/static/'))
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
@@ -139,5 +141,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'praptigshah12@gmail.com '
-EMAIL_HOST_PASSWORD = 'prapti12'
+EMAIL_HOST_USER = 'jinalthakor27@gmail.com '
+EMAIL_HOST_PASSWORD = 'Jinal___45'

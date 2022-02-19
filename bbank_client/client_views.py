@@ -1,37 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from bbank_admin.forms import UserForm
+from bbank_admin.models import User,Bloodbank
+
 
 def login(request):
     if request.method == "POST":
-        email = request.POST["email"]
-        password = request.POST["password"]
-        val = Admin.objects.filter(admin_email=email, admin_password=password, is_admin=1).count()
-        print("------------------", email, "-----------------", password)
+        d_email = request.POST.get("email")
+        pas = request.POST.get("password")
+        val = User.objects.filter(email=d_email, pas=password).count()
+        print("------------------", d_email, "-----------------", pas)
         if val == 1:
-            data = Admin.objects.filter(admin_email=email, admin_password=password, is_admin=1)
+            data = User.objects.filter(email=d_email, password=pas)
             for item in data:
-                request.session['a_email'] = item.admin_email
-                request.session['a_pw'] = item.admin_password
+                request.session['user_email'] = item.email
+                request.session['user_pass'] = item.password
+                request.session['user_id'] = item.d_id
+                return redirect('/home/')
         else:
             messages.error(request, "Invalid user name and password")
-            return redirect('/login')
+            return redirect('/client_login')
     else:
-        return render(request, "login.html")
+        return render(request, "client_login.html")
 
 
-def forgot(request):
-    return render(request, 'passcode-reset.html')
+def forgotc(request):
+    return render(request, 'forgot.html')
 
 
-def send_otp(request):
+def send_otpc(request):
     otp1 = random.randint(10000, 99999)
-    e = request.POST['email']
+    e = request.POST.get('email')
 
     request.session['temail'] = e
-
-    obj = Admin.objects.filter(admin_email=e).count()
-
+    print("===EMAILLLL===", e)
+    obj = User.objects.filter(admin_email=e).count()
+    print("===OBJECTTTTTTT==", obj)
     if obj == 1:
-        val = Admin.objects.filter(admin_email=e).update(otp=otp1, otp_used=0)
+        val = User.objects.filter(email=e).update(d_otp=otp1, d_otp_used=0)
 
         subject = 'OTP Verification'
         message = str(otp1)
@@ -40,31 +45,63 @@ def send_otp(request):
 
         send_mail(subject, message, email_from, recipient_list)
 
-        return render(request, 'set_password.html')
+    return render(request, 'set_password.html')
 
 
-def set_password(request):
+def resetc(request):
     if request.method == "POST":
 
-        T_otp = request.POST['otp']
-        T_pass = request.POST['admin_password']
-        T_cpass = request.POST['cpass']
+        T_otp = request.POST.get('d_otp')
+        T_pass = request.POST.get('password')
+        T_cpass = request.POST.get('cpass')
 
         if T_pass == T_cpass:
-
+            print("=====PASSWORDDDDDDDDDDDDDDD=====", T_pass, T_cpass)
             e = request.session['temail']
-            val = Admin.objects.filter(admin_email=e, otp=T_otp, otp_used=0).count()
-
+            val = User.objects.filter(email=e, otp=T_otp, otp_used=0).count()
+            print("===========", val)
             if val == 1:
-                Admin.objects.filter(admin_email=e).update(otp_used=1, admin_password=T_pass)
-                return redirect("/login")
+                User.objects.filter(email=e).update(d_otp_used=1, password=T_pass)
+                return redirect("/client_login")
             else:
                 messages.error(request, "Invalid OTP")
-                return render(request, "passcode-reset.html")
+                return render(request, "forgot.html")
 
         else:
             messages.error(request, "New password and Confirm password does not match ")
             return render(request, "set_password.html")
 
     else:
-        return redirect("/passcode-reset")
+        return redirect("/forgot")
+
+
+def home(request):
+    return render(request, "home.html")
+
+
+def autosuggest(request):
+    if 'term' in request.GET:
+        qs = Bloodbank.objects.filter(b_name__istartswith=request.GET.get('term'))
+
+        names = list()
+
+        for x in qs:
+            names.append(x.b_name)
+        return JsonResponse(names, safe=False)
+    return render(request, "client_header.html")
+
+
+def search(request):
+    if request.method == "POST":
+        name = request.POST["bloodgrp_type"]
+        p = Bloodbank.objects.filter(bloodgrp_type=name)
+
+    else:
+        p = Bloodbank.objects.all()
+
+    return render(request, "bloodbank.html", {"p": p})
+
+
+def bbank_details(request):
+    return render(request, "bbank-details.html")
+

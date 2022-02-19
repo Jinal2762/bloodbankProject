@@ -2,82 +2,719 @@
 {% load static %}
 {% block content %}
 <div class="summery-wrap">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card summery-box">
-                                    <div class="card-body">
-                                        <div class="summery-line">
-                                            <div id="summery-line1"></div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="item-icon bg-lynch">
-                                                <img src="../../../media/figure/icon_1.png" alt="icon">
-                                            </div>
-                                            <div class="media-body">
-                                                <h3 class="item-title">DONORS<span class="text-manatee"></span></h3>
-                                                <div class="item-currency">{{don}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-sm-6">
+                <div class="card summery-box">
+                    <div class="card-body">
+                        <div class="summery-line">
+                            <div id="summery-line1"></div>
+                        </div>
+                        <div class="media">
+                            <div class="item-icon bg-lynch">
+                                <img src="../../../media/figure/icon_1.png" alt="icon">
                             </div>
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card summery-box">
-                                    <div class="card-body">
-                                        <div class="summery-line">
-                                            <div id="summery-line2"></div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="item-icon bg-carrot-orange">
-                                                <img src="../../../media/figure/icon_2.png" alt="icon">
-                                            </div>
-                                            <div class="media-body">
-                                                <h3 class="item-title">RECEIVERS<span class="text-manatee"></span></h3>
-                                                <div class="item-currency">{{rec}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card summery-box">
-                                    <div class="card-body">
-                                        <div class="summery-line">
-                                            <div id="summery-line3"></div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="item-icon bg-azure">
-                                                <img src="../../../media/figure/icon_3.png" alt="icon">
-                                            </div>
-                                            <div class="media-body">
-                                                <h3 class="item-title">BLOOD BANKS<span class="text-manatee"></span></h3>
-                                                <div class="item-currency">{{bb}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card summery-box">
-                                    <div class="card-body">
-                                        <div class="summery-line">
-                                            <div id="summery-line4"></div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="item-icon bg-blue-ribbon">
-                                                <img src="../../../media/figure/icon_4.png" alt="icon">
-                                            </div>
-                                            <div class="media-body">
-                                                <h3 class="item-title">HOSPITALS<span class="text-manatee"></span></h3>
-                                                <div class="item-currency">{{hos}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="media-body">
+                                <h3 class="item-title">USERS<span class="text-manatee"></span></h3>
+                                <div class="item-currency">{{user}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <div class="card summery-box">
+                    <div class="card-body">
+                        <div class="summery-line">
+                            <div id="summery-line3"></div>
+                        </div>
+                        <div class="media">
+                            <div class="item-icon bg-azure">
+                                <img src="../../../media/figure/icon_3.png" alt="icon">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="item-title">BLOOD BANKS<span class="text-manatee"></span></h3>
+                                <div class="item-currency">{{bb}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxl-8 col-12">
+            <div class="card web-audience crypto-card crypto-overview">
+                <div class="card-body">
+<!--                    <div class="row align-items-center mb-4">-->
+<!--                        <div class="col-sm-4">-->
+<!--                            <h3 class="section-title mb-1">Overview</h3>-->
+<!--                            <div class="text-regent-gray text-13">01/17/20 - 01/29/2020</div>-->
+<!--                        </div>-->
 
+<!--                    </div>-->
+                    {% include 'base.html' %}
+                    <script>
+	{% block jquery %}
+		var endpoint = '/api/chart/data/'
+		var defaultData = []
+		var labels = [];
+		$.ajax({
+			method: "GET",
+			url: endpoint,
+			success: function(data) {
+				labels = data.labels
+				defaultData = data.default
+				setChart()
+				},
+			error: function(error_data) {
+				console.log("error")
+				console.log(error_data)
+				}
+		})
+
+	function setChart() {
+		var ctx = document.getElementById("myChart");
+		var ctx2 = document.getElementById("myChart2");
+		var myChart = new Chart(ctx2, {
+		type: 'bar',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Total Appointment',
+				data: defaultData,
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+					],
+				borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+					],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+			yAxes: [{
+				ticks: {
+				beginAtZero: true
+				}
+			}]
+			}
+		}
+		});
+		var myChart = new Chart(ctx, {
+		type: 'polarArea',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: '# of Votes',
+				data: defaultData,
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+					],
+				borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+					],
+				borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+				yAxes: [{
+					ticks: {
+					beginAtZero: true
+					}
+				}]
+			}
+			}
+			});
+			}
+			// var ctx = document.getElementById("myChart");
+		{% endblock %}
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-lg-6">
+            <div class="card crypto-card crypto-wallet">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="section-title">BTC Wallet</h3>
+                        </div>
+                        <div class="col-4">
+                            <div class="dropdown section-dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                   aria-expanded="false">March<i class="flaticon-null-16"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">April</a>
+                                    <a class="dropdown-item" href="#">May</a>
+                                    <a class="dropdown-item" href="#">June</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <h6 class="text-body text-14 text-semibold mb-2">Available Balance</h6>
+                            <h4 class="text-xtrabold mb-2 text-midnight">26.00453100 <span
+                                    class="text-semibold text-carrot-orange">BTC</span></h4>
+                            <ul class="currency-list">
+                                <li><span class="text-mountain-meadow">USD</span> $103,342</li>
+                                <li><span class="text-light-red">EUR</span> $91,105</li>
+                            </ul>
+                        </div>
+                        <div class="col-4 text-right">
+                            <h6 class="text-12 text-regent-gray text-semibold mb-1">Income</h6>
+                            <h6 class="text-14 text-bold text-body mb-2">$ 3248.46</h6>
+                            <h6 class="text-12 text-regent-gray text-semibold mb-1">Expense</h6>
+                            <h6 class="text-14 text-bold text-body mb-0">$ 4284.46</h6>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th class="text-bold text-15 text-body mb-0">Recent Transactions</th>
+                                <th class="text-blue-ribbon text-13 text-regular text-right">Show All</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Income Bitcoin</h6>
+                                </td>
+                                <td class="text-right text-13">+0.00003998 <span
+                                        class="text-semibold text-carrot-orange">BTC</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Expense Bitcoin</h6>
+                                </td>
+                                <td class="text-right text-13">-0.00003998 <span
+                                        class="text-semibold text-carrot-orange">BTC</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Bought Ethereum</h6>
+                                </td>
+                                <td class="text-right text-13">+2.0157 <span class="text-semibold text-lynch">ETH</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Bought Dash</h6>
+                                </td>
+                                <td class="text-right text-13">+0.000033420 <span
+                                        class="text-semibold text-blue-ribbon">DASH</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Expense Litecoin</h6>
+                                </td>
+                                <td class="text-right text-13">+0.000033420 <span
+                                        class="text-semibold text-lynch">LTC</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Income Bitcoin</h6>
+                                </td>
+                                <td class="text-right text-13">+0.00003998 <span
+                                        class="text-semibold text-carrot-orange">BTC</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Bought Dash</h6>
+                                </td>
+                                <td class="text-right text-13">+0.000033420 <span
+                                        class="text-semibold text-blue-ribbon">DASH</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-14 text-bold text-body mb-0">Expense Bitcoin</h6>
+                                </td>
+                                <td class="text-right text-13">-0.00003998 <span
+                                        class="text-semibold text-carrot-orange">BTC</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-lg-6">
+            <div class="card crypto-card crypto-transaction">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="section-title">Transaction</h3>
+                        </div>
+                        <div class="col-4">
+                            <div class="dropdown section-dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                   aria-expanded="false">30 Days<i class="flaticon-null-16"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">15 Days</a>
+                                    <a class="dropdown-item" href="#">7 Days</a>
+                                    <a class="dropdown-item" href="#">1 Days</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs mb-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#all-transection" role="tab"
+                               aria-selected="true">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#buy-transection" role="tab"
+                               aria-selected="false">Buy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#sell-transection" role="tab"
+                               aria-selected="false">Sell</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="all-transection" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col" class="text-right">Amount ($)</th>
+                                        <th scope="col" class="text-right">Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">14 Mar, 20</td>
+                                        <td class="text-right">$125.20</td>
+                                        <td class="text-right">0.016 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">17 Mar, 20</td>
+                                        <td class="text-right">$127.20</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy LTC</h6>
+                                        </td>
+                                        <td class="text-manatee">18 Mar, 20</td>
+                                        <td class="text-right">$87.50</td>
+                                        <td class="text-right">1.88 LTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$129.50</td>
+                                        <td class="text-right">0.018 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$115.50</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">14 Mar, 20</td>
+                                        <td class="text-right">$125.20</td>
+                                        <td class="text-right">0.016 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">17 Mar, 20</td>
+                                        <td class="text-right">$127.20</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy LTC</h6>
+                                        </td>
+                                        <td class="text-manatee">18 Mar, 20</td>
+                                        <td class="text-right">$87.50</td>
+                                        <td class="text-right">1.88 LTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$129.50</td>
+                                        <td class="text-right">0.018 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$115.50</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="buy-transection" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col" class="text-right">Amount ($)</th>
+                                        <th scope="col" class="text-right">Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">14 Mar, 20</td>
+                                        <td class="text-right">$125.20</td>
+                                        <td class="text-right">0.016 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">17 Mar, 20</td>
+                                        <td class="text-right">$127.20</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy LTC</h6>
+                                        </td>
+                                        <td class="text-manatee">18 Mar, 20</td>
+                                        <td class="text-right">$87.50</td>
+                                        <td class="text-right">1.88 LTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$129.50</td>
+                                        <td class="text-right">0.018 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$115.50</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">14 Mar, 20</td>
+                                        <td class="text-right">$125.20</td>
+                                        <td class="text-right">0.016 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">17 Mar, 20</td>
+                                        <td class="text-right">$127.20</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy LTC</h6>
+                                        </td>
+                                        <td class="text-manatee">18 Mar, 20</td>
+                                        <td class="text-right">$87.50</td>
+                                        <td class="text-right">1.88 LTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$129.50</td>
+                                        <td class="text-right">0.018 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$115.50</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="sell-transection" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col" class="text-right">Amount ($)</th>
+                                        <th scope="col" class="text-right">Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">14 Mar, 20</td>
+                                        <td class="text-right">$125.20</td>
+                                        <td class="text-right">0.016 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">17 Mar, 20</td>
+                                        <td class="text-right">$127.20</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy LTC</h6>
+                                        </td>
+                                        <td class="text-manatee">18 Mar, 20</td>
+                                        <td class="text-right">$87.50</td>
+                                        <td class="text-right">1.88 LTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$129.50</td>
+                                        <td class="text-right">0.018 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$115.50</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">14 Mar, 20</td>
+                                        <td class="text-right">$125.20</td>
+                                        <td class="text-right">0.016 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">17 Mar, 20</td>
+                                        <td class="text-right">$127.20</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Buy LTC</h6>
+                                        </td>
+                                        <td class="text-manatee">18 Mar, 20</td>
+                                        <td class="text-right">$87.50</td>
+                                        <td class="text-right">1.88 LTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell BTC</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$129.50</td>
+                                        <td class="text-right">0.018 BTC</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6 class="text-12 text-semibold mb-0 text-body">Sell ETH</h6>
+                                        </td>
+                                        <td class="text-manatee">20 Mar, 20</td>
+                                        <td class="text-right">$115.50</td>
+                                        <td class="text-right">0.56 ETH</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-lg-6">
+            <div class="card crypto-card crypto-notify">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="section-title">Notifications</h3>
+                        </div>
+                        <div class="col-4">
+                            <div class="dropdown section-dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                   aria-expanded="false">30 Days<i class="flaticon-null-16"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">15 Days</a>
+                                    <a class="dropdown-item" href="#">7 Days</a>
+                                    <a class="dropdown-item" href="#">1 Days</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notify-list">
+                        <div class="media">
+                            <div class="item-img">
+                                <img src="../../../media/figure/notify_1.jpg" alt="Notification">
+                            </div>
+                            <div class="media-body">
+                                <h5 class="item-title"><a href="#">Triangle Concrete House</a></h5>
+                                <p>There are many variations that any passages but majority.</p>
+                                <ul class="entry-meta">
+                                    <li><i class="far fa-calendar-alt"></i>12 Mar, 2020</li>
+                                    <li><i class="far fa-user"></i>John Frick</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="item-img">
+                                <img src="../../../media/figure/notify_2.jpg" alt="Notification">
+                            </div>
+                            <div class="media-body">
+                                <h5 class="item-title"><a href="#">Modern concepts and designs</a></h5>
+                                <p>There are many variations that any passages but majority.</p>
+                                <ul class="entry-meta">
+                                    <li><i class="far fa-calendar-alt"></i>12 Mar, 2020</li>
+                                    <li><i class="far fa-user"></i>Adam Stone</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="item-img">
+                                <img src="../../../media/figure/notify_3.jpg" alt="Notification">
+                            </div>
+                            <div class="media-body">
+                                <h5 class="item-title"><a href="#">Architecture Awards</a></h5>
+                                <p>There are many variations that any passages but majority.</p>
+                                <ul class="entry-meta">
+                                    <li><i class="far fa-calendar-alt"></i>12 Mar, 2020</li>
+                                    <li><i class="far fa-user"></i>John Frick</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-lg-6">
+            <div class="card crypto-card crypto-currency">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="section-title">By Currency Rate</h3>
+                        </div>
+                        <div class="col-4">
+                            <div class="dropdown section-dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                   aria-expanded="false">30 Days<i class="flaticon-null-16"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">15 Days</a>
+                                    <a class="dropdown-item" href="#">7 Days</a>
+                                    <a class="dropdown-item" href="#">1 Days</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="crypto-pai-chart">
+                        <canvas id="pie-chart" width="100" height="220"></canvas>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <h6 class="text-15 item-title pseudo-bg-tagerine">Bitcoin</h6>
+                                </td>
+                                <td class="text-right">0.4412 BTC = <span>$ 4025.32</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-15 item-title pseudo-bg-lynch">Ethereum</h6>
+                                </td>
+                                <td class="text-right">4.5701 ETH = <span>$ 1123.64</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-15 item-title pseudo-bg-dodger-blue">Dash</h6>
+                                </td>
+                                <td class="text-right">.03342 DAS = <span>$ 984.75</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-15 item-title pseudo-bg-azure">Litecoin</h6>
+                                </td>
+                                <td class="text-right">35.3811 LTC = <span>$ 848.19</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6 class="text-15 item-title pseudo-bg-hotpink">ByteCoin</h6>
+                                </td>
+                                <td class="text-right">00.3811 BCN = <span>$ 754.06</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
