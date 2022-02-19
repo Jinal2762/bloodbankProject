@@ -100,6 +100,16 @@ class Appointment(models.Model):
         db_table = "bloodbank_appointment"
 
 
+class Gallery(models.Model):
+    gallery_id = models.AutoField(primary_key=True)
+    b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
+    img_path = models.FileField()
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "bloodbank_gallery"
+
+
 class Request_blood(models.Model):
     request_id = models.AutoField(primary_key=True)
     u_id = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -110,16 +120,6 @@ class Request_blood(models.Model):
 
     class Meta:
         db_table = "bloodbank_requestblood"
-
-
-class Gallery(models.Model):
-    gallery_id = models.AutoField(primary_key=True)
-    b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
-    img_path = models.FileField()
-    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = "bloodbank_gallery"
 
 
 class Admin(models.Model):

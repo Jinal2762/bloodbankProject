@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from bbank_admin.forms import UserForm
-from bbank_admin.models import User,Bloodbank
-
-
+from bbank_admin.models import User, Bloodbank, Appointment
+from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp
+import random
 def login(request):
     if request.method == "POST":
         d_email = request.POST.get("email")
@@ -23,17 +23,17 @@ def login(request):
         return render(request, "client_login.html")
 
 
-def forgotc(request):
+def forgot(request):
     return render(request, 'forgot.html')
 
 
-def send_otpc(request):
+def sendotp(request):
     otp1 = random.randint(10000, 99999)
     e = request.POST.get('email')
 
     request.session['temail'] = e
     print("===EMAILLLL===", e)
-    obj = User.objects.filter(admin_email=e).count()
+    obj = User.objects.filter(email=e).count()
     print("===OBJECTTTTTTT==", obj)
     if obj == 1:
         val = User.objects.filter(email=e).update(d_otp=otp1, d_otp_used=0)
@@ -48,7 +48,7 @@ def send_otpc(request):
     return render(request, 'set_password.html')
 
 
-def resetc(request):
+def reset(request):
     if request.method == "POST":
 
         T_otp = request.POST.get('d_otp')
@@ -62,7 +62,7 @@ def resetc(request):
             print("===========", val)
             if val == 1:
                 User.objects.filter(email=e).update(d_otp_used=1, password=T_pass)
-                return redirect("/client_login")
+                return redirect("client/client_login")
             else:
                 messages.error(request, "Invalid OTP")
                 return render(request, "forgot.html")
@@ -72,7 +72,7 @@ def resetc(request):
             return render(request, "set_password.html")
 
     else:
-        return redirect("/forgot")
+        return redirect("client/forgot")
 
 
 def home(request):
@@ -81,12 +81,12 @@ def home(request):
 
 def autosuggest(request):
     if 'term' in request.GET:
-        qs = Bloodbank.objects.filter(b_name__istartswith=request.GET.get('term'))
+        qs = Bloodbank.objects.filter(bloodgrp_type__istartswith=request.GET.get('term'))
 
         names = list()
 
         for x in qs:
-            names.append(x.b_name)
+            names.append(x.bloodgrp_type)
         return JsonResponse(names, safe=False)
     return render(request, "client_header.html")
 
@@ -97,7 +97,7 @@ def search(request):
         p = Bloodbank.objects.filter(bloodgrp_type=name)
 
     else:
-        p = Bloodbank.objects.all()
+        p = Blood_grp.objects.all()
 
     return render(request, "bloodbank.html", {"p": p})
 
@@ -105,3 +105,62 @@ def search(request):
 def bbank_details(request):
     return render(request, "bbank-details.html")
 
+
+def appointment_details(request):
+    a = Appointment.objects.all()
+    print("=========INSIDE FUNCRION", a)
+    return render(request, "appointment_details.html", {'a': a})
+
+
+def bbank_directory(request):
+    bbank = Bloodbank.objects.all()
+    return render(request, "bbank_directory.html", {'bbanks': bbank})
+
+
+def gallery(request):
+    return render(request, "gallery.html")
+
+
+def aboutus(request):
+    return render(request, "about_us.html")
+
+
+def blood_availability(request):
+    return render(request, "b_availability.html")
+
+
+def blood_donate(request):
+    return render(request, "b_donate.html")
+
+
+def contact(request):
+    return render(request, "contact.html")
+
+
+def events(request):
+    return render(request, "events.html")
+
+
+def van_schedule(request):
+    return render(request, "van_schedule.html")
+
+
+def blood_request(request):
+    return render(request, "b_request.html")
+
+
+def client_register(request):
+    bloodgroup = Blood_grp.objects.all()
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        print("-------------", form.errors)
+        print("======", request.POST['is_admin'])
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/client/client_login')
+            except:
+                print("---------------", sys.exc_info())
+    else:
+        form = UserForm()
+    return render(request, 'registration.html', {'form': form, "bloodgroup": bloodgroup})

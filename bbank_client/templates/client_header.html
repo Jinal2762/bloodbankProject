@@ -83,12 +83,14 @@
                     </button>
                     <a class="logo" href="index.html"><img alt="" src="{% static 'v_2/images/logo.png' %}"></a>
                 </div>
-                <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search...." id="search_pro" name="bloodgrp_type">
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                </div>
-                <input type="hidden" value="submit" />
-
+                <form method="post" action="/search_product/">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search...." id="search_pro"
+                               name="bloodgrp_type">
+                        <span class="input-group-addon"><i class="fa fa-search" , style="font-size: 18px;"></i></span>
+                    </div>
+                    <input type="hidden" value="submit"/>
+                </form>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
 
@@ -122,8 +124,7 @@
                                 </li>
                                 <li class="drop"><a href="#">Gallery</a>
                                     <ul class="drop-down level3">
-                                        <li><a href="gallery-1.html">Layout 01</a></li>
-                                        <li><a href="gallery-2.html">Layout 02</a></li>
+                                        <li><a href="gallery.html">Layout 01</a></li>
 
                                     </ul>
                                 </li>
@@ -167,13 +168,13 @@
 
                         <div class="row">
 
-                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                <img src="{% static 'v_2/images/logo-footer.png' %}" alt=""/>
-                            </div> <!--  end col-lg-3-->
 
+<<<<<<< HEAD
                             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 
                             </div> <!--  end .col-lg-9  -->
+=======
+>>>>>>> 2f8b17b670e058ea28f5f3bdf5d764ac9e6cfb03
 
                         </div> <!--  end .row -->
 
@@ -199,10 +200,19 @@
                             <div class="textwidget">
 
                                 <i class="fa fa-envelope-o fa-contact"></i>
+<<<<<<< HEAD
                                 <p><a href="#">raqtt.io@gmail.com</a><br/></a></p>
 
                                 <i class="fa fa-phone fa-contact"></i>
                                 <p>Cell:&nbsp; 8141400045</br> :7802949182</p>
+=======
+                                <p><a href="#">raqtt@gmail.com</a><br/><a href="#">blood@donation.com</a></p>
+
+
+              d:
+                                d<i class="fa fa-phone fa-contact"></i>
+                                <p>Cell:&nbsp; 8141400045<br/>Cell: 7802949182</p>
+>>>>>>> 2f8b17b670e058ea28f5f3bdf5d764ac9e6cfb03
 
                             </div>
 
@@ -212,6 +222,7 @@
 
                 </div> <!--  end .col-md-4 col-sm-12 -->
 
+<<<<<<< HEAD
                 <div class="col-md-4 col-sm-12 col-xs-12">
 
                     <div class="footer-widget clearfix">
@@ -304,6 +315,9 @@
                 </div> <!--  end .col-md-4 col-sm-12 -->
 
 
+=======
+                </div> <!--  end .col-md-4 col-sm-12 -->
+>>>>>>> 2f8b17b670e058ea28f5f3bdf5d764ac9e6cfb03
 
             </div> <!-- end row  -->
 
@@ -312,22 +326,7 @@
     </section> <!--  end .footer-widget-area  -->
 
     <!--FOOTER CONTENT  -->
-
-    <section class="footer-contents">
-
-        <div class="container">
-
-            <div class="row clearfix">
-
-                <div class="col-md-12 col-sm-12 text-center">
-                    <p class="copyright-text"> Copyright 2018 - Blood Buddies by BlueWindLab. All Rights Reserved. </p>
-                </div>  <!-- end .col-sm-6  -->
-
-            </div> <!-- end .row  -->
-
-        </div> <!--  end .container  -->
-
-    </section> <!--  end .footer-content  -->
+    <!--  end .footer-content  -->
 
 </footer>
 
@@ -353,12 +352,19 @@
 
 <!-- Mirrored from templates.bwlthemes.com/blood_donation/v_2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jan 2022 05:00:48 GMT -->
 </html>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 1e830ba655e92207dd9efca5db5ece1df2748aab
 <script>
   $( function() {
 
     $( "#search_pro" ).autocomplete({
-      source: '{% url 'pro_search'  %}'
+      source: '{% url 'pro_search' %}'
 
     });
   });
+
+
 </script>

@@ -38,7 +38,7 @@
 
             <h2 class="contact-title">Reset Password</h2>
 
-            <form role="form" method="post" id="contact-form" action="/send_otpc/">
+            <form role="form" method="post" id="contact-form" action="client/sendotp/">
                 {% csrf_token %}
 
                 <div class="form-group">
@@ -46,11 +46,10 @@
                            data-msg="Please Write Your Valid Email"/>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="submit-btn">SEND RESET LINK</button>
+                    <button type="submit" class="btn btn-theme">SEND OTP</button>
                 </div>
 
             </form>
-            <a href="client_login.html" class="login-back">Return to login</a>
 
         </div> <!-- end .contact-form-block  -->
 
