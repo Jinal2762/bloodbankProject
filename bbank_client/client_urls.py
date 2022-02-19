@@ -24,7 +24,8 @@ urlpatterns = [
     path('events/', client_views.events),
     path('van_schedule/', client_views.van_schedule),
     path('b_request/', client_views.blood_request),
-    path('gallery/', client_views.gallery)
+    path('gallery/', client_views.gallery),
+    path('bbank_directory/',client_views.bbank_directory)
 
 
 ]

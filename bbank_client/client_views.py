@@ -113,8 +113,7 @@ def appointment_details(request):
 
 
 def bbank_directory(request):
-    bbank = Bloodbank.objects.all()
-    return render(request, "bbank_directory.html", {'bbanks': bbank})
+    return render(request, "bbank_directory.html")
 
 
 def gallery(request):
