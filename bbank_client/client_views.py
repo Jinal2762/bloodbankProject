@@ -3,6 +3,8 @@ from bbank_admin.forms import UserForm
 from bbank_admin.models import User, Bloodbank, Appointment
 from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp
 import random
+
+
 def login(request):
     if request.method == "POST":
         d_email = request.POST.get("email")
