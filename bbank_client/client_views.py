@@ -104,8 +104,20 @@ def search(request):
     return render(request, "bloodbank.html", {"p": p})
 
 
-def bbank_details(request):
-    return render(request, "bbank-details.html")
+def bb_j(request):
+    return render(request, "BB1.html")
+
+
+def bb_d(request):
+    return render(request, "BB2.html")
+
+
+def bb_p(request):
+    return render(request, "BB3.html")
+
+
+def appointment_details(request):
+    return render(request, "appointment_details.html")
 
 
 def appointment_details(request):
