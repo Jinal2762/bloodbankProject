@@ -10,7 +10,6 @@ urlpatterns = [
     path('reset/', client_views.reset),
     path('about_us/', client_views.aboutus),
     path('home/', client_views.home),
-    path('bbank_details/', client_views.bbank_details),
     path('appointment_details/', client_views.appointment_details),
     path('bbank_directory/', client_views.bbank_directory),
     path('search_product/', client_views.autosuggest, name='pro_search'),
@@ -25,7 +24,9 @@ urlpatterns = [
     path('van_schedule/', client_views.van_schedule),
     path('b_request/', client_views.blood_request),
     path('gallery/', client_views.gallery),
-    path('bbank_directory/',client_views.bbank_directory)
-
+    path('BB1/',client_views.bb_j),
+    path('BB2/',client_views.bb_d),
+    path('BB3/',client_views.bb_p),
+    path('appointment_details/',client_views.appointment_details)
 
 ]
