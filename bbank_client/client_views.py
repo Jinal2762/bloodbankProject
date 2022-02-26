@@ -177,3 +177,22 @@ def client_register(request):
     else:
         form = UserForm()
     return render(request, 'registration.html', {'form': form, "bloodgroup": bloodgroup})
+
+
+def insert_appointment(request):
+    temp = User.objects.all()
+    flag = Bloodbank.objects.all()
+    if request.method == "POST":
+        form = AppointmentForm(request.POST)
+        print("-----5555------", form.errors)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/show_appointment')
+            except:
+                print("----4444------", sys.exc_info())
+    else:
+        form = AppointmentForm()
+    return render(request, 'appointment_form.html', {'form': form, 'flag': flag, 'temp': temp})
+
+
