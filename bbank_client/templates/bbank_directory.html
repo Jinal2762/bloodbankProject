@@ -1,32 +1,42 @@
 {% extends "client_header.html" %}
 {% load static %}
 {% block content %}
-<div class="row section-heading-wrapper">
+<section class="section-content-block section-process">
 
-    <div class="col-md-12 col-sm-12">
-        <h2><span>Donation</span> Process</h2>
-        <h4>The donation process from the time you arrive center until the time you leave</h4>
-    </div> <!-- end .col-sm-10  -->
-</div> <!--  end .row  -->
-<div class="row wow fadeInUp">
+            <div class="container-fluid">
 
-     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="row section-heading-wrapper">
 
-         <div class="process-layout">
+                    <div class="col-md-12 col-sm-12">
+                        <h2><span>Donation</span> Process</h2>
+                        <h4>The donation process from the time you arrive center until the time you leave</h4>
+                    </div> <!-- end .col-sm-10  -->
 
-             <figure class="process-img">
-                 <img src="images/process_1.jpg" alt="process" />
-                 <div class="step">
-                     <h3>1</h3>
-                 </div>
-             </figure> <!-- end .process-img  -->
+                </div><!-- end .col-sm-10  -->
 
-             <article class="process-info">
-                 <h2>Registration</h2>
-                 <p>You need to complete a very simple registration form. Which contains all required contact information to enter in the donation process.</p>
-             </article>
-         </div> <!--  end .process-layout -->
+                </div> <!--  end .row  -->
 
-     </div> <!--  end .col-lg-3 -->
- </div>
+                <div class="row wow fadeInUp">
+
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+
+                        <div class="process-layout">
+                            <a href ="/client/BB1">
+                            <figure class="process-img">
+                                <img src="images/BB1.jpg" alt="process" />
+                                <div class="step">
+                                    <h3>1</h3>
+                                </div>
+                            </figure> <!-- end .process-img  -->
+
+                            <article class="process-info">
+                                <h2>Registration</h2>
+                            </article>
+                            </a>
+
+                        </div> <!--  end .process-layout -->
+
+                    </div><!--  end .col-lg-3 -->
+                </div>
+</section>
 {% endblock %}

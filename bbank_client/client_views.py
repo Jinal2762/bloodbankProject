@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from bbank_admin.forms import UserForm
-from bbank_admin.models import User, Bloodbank, Appointment
+from bbank_admin.models import User, Bloodbank, Appointment,Admin
 from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp
 import random
 
@@ -194,5 +194,23 @@ def insert_appointment(request):
     else:
         form = AppointmentForm()
     return render(request, 'appointment_form.html', {'form': form, 'flag': flag, 'temp': temp})
+
+
+def client_update_profile(request):
+    bloodgroup = Blood_grp.objects.all()
+    a_id =Admin.objects.all()
+    u = User.objects.get(email=a_id)
+    form = UserForm(request.POST, instance=u)
+    print("-------------", form.errors)
+    if form.is_valid():
+        try:
+            form.save()
+            return redirect("/client/client_login/")
+        except:
+            print("---------------", sys.exc_info())
+    else:
+        pass
+    return render(request, "client_profile.html", {'ca': u, "bloodgroup": bloodgroup})
+
 
 

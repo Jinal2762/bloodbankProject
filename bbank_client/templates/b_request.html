@@ -1,7 +1,7 @@
 {% extends "client_header.html" %}
 {% load static %}
 {% block content %}
-<h3 class="join-heading join-heading-alt">Request for blood</h3>
+<h3 class="join-heading join-heading-alt"><center>Request for blood</h3></center>
                             <form class="appoinment-form">
                                 <div class="form-group col-md-6">
                                     <input id="your_name" class="form-control" placeholder="Name" type="text">
@@ -9,18 +9,16 @@
                                 <div class="form-group col-md-6">
                                     <input id="your_email" class="form-control" placeholder="Email" type="email">
                                 </div>
+                                 <div class="form-group col-md-6">
+                                    <input id="quantity" class="form-control" placeholder="Blood quantity" type="text">
+                                </div>
                                 <div class="form-group col-md-6">
                                     <input id="your_phone" class="form-control" placeholder="Phone" type="text">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <input id="your_date" class="form-control" placeholder="Date" type="date">
+                                 <div class="form-group col-md-6">
+                                    <input id="bloodgroup" class="form-control" placeholder="Blood Group" type="text">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <input id="bloodgrp" class="form-control" placeholder="Blood-group" type="">
+                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <button id="btn_submit" class="btn btn-theme" type="submit">Submit</button>
                                 </div>
-                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <button id="btn_submit" class="btn btn-theme" type="submit">Get Appointment</button>
-                                </div>
-
-                            </form>
 {% endblock %}

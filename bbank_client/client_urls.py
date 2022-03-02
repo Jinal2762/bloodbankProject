@@ -27,6 +27,7 @@ urlpatterns = [
     path('BB1/',client_views.bb_j),
     path('BB2/',client_views.bb_d),
     path('BB3/',client_views.bb_p),
-    path('appointment_details/',client_views.appointment_details)
+    path('appointment_details/', client_views.appointment_details),
+    path('client_update_profile/', client_views.client_update_profile)
 
 ]
