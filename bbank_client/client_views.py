@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from bbank_admin.forms import UserForm
-from bbank_admin.models import User, Bloodbank, Appointment
-from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp
+from bbank_admin.models import User, Bloodbank, Appointment, Blood_grp, Feedback
 import random
-def login(request):
+def client_login(request):
     if request.method == "POST":
         d_email = request.POST.get("email")
         pas = request.POST.get("password")
@@ -15,19 +14,18 @@ def login(request):
                 request.session['user_email'] = item.email
                 request.session['user_pass'] = item.password
                 request.session['user_id'] = item.d_id
-                return redirect('/home/')
+                return redirect('/client/home/')
         else:
             messages.error(request, "Invalid user name and password")
-            return redirect('/client_login')
+            return redirect('/client/client_login')
     else:
         return render(request, "client_login.html")
 
 
-def forgot(request):
-    return render(request, 'forgot.html')
+def client_forgetpassword(request):
+    return render(request, 'client_forgetpassword.html')
 
-
-def sendotp(request):
+def client_sendotp(request):
     otp1 = random.randint(10000, 99999)
     e = request.POST.get('email')
 
@@ -45,10 +43,10 @@ def sendotp(request):
 
         send_mail(subject, message, email_from, recipient_list)
 
-    return render(request, 'set_password.html')
+    return render(request, 'client_setpassword.html')
 
 
-def reset(request):
+def client_set_password(request):
     if request.method == "POST":
 
         T_otp = request.POST.get('d_otp')
@@ -62,17 +60,17 @@ def reset(request):
             print("===========", val)
             if val == 1:
                 User.objects.filter(email=e).update(d_otp_used=1, password=T_pass)
-                return redirect("client/client_login")
+                return redirect("/client_login/")
             else:
                 messages.error(request, "Invalid OTP")
-                return render(request, "forgot.html")
+                return render(request, "client_forgetpassword.html")
 
         else:
             messages.error(request, "New password and Confirm password does not match ")
-            return render(request, "set_password.html")
+            return render(request, "client_forgetpassword.html")
 
     else:
-        return redirect("client/forgot")
+        return redirect("/client_forgetpassword")
 
 
 def home(request):
@@ -102,62 +100,13 @@ def search(request):
     return render(request, "bloodbank.html", {"p": p})
 
 
-def bb_j(request):
-    return render(request, "BB1.html")
-
-
-def bb_d(request):
-    return render(request, "BB2.html")
-
-
-def bb_p(request):
-    return render(request, "BB3.html")
-
-
-def appointment_details(request):
-    return render(request, "appointment_details.html")
-
-
-def appointment_details(request):
-    a = Appointment.objects.all()
-    print("=========INSIDE FUNCRION", a)
-    return render(request, "appointment_details.html", {'a': a})
-
-
 def bbank_directory(request):
-    return render(request, "bbank_directory.html")
-
-
-def gallery(request):
-    return render(request, "gallery.html")
+    bb = Bloodbank.objects.all()
+    return render(request, "bbank_directory.html", {"bb":bb})
 
 
 def aboutus(request):
     return render(request, "about_us.html")
-
-
-def blood_availability(request):
-    return render(request, "b_availability.html")
-
-
-def blood_donate(request):
-    return render(request, "b_donate.html")
-
-
-def contact(request):
-    return render(request, "contact.html")
-
-
-def events(request):
-    return render(request, "events.html")
-
-
-def van_schedule(request):
-    return render(request, "van_schedule.html")
-
-
-def blood_request(request):
-    return render(request, "b_request.html")
 
 
 def client_register(request):
@@ -175,3 +124,63 @@ def client_register(request):
     else:
         form = UserForm()
     return render(request, 'registration.html', {'form': form, "bloodgroup": bloodgroup})
+
+
+def feedback_show(request):
+    fb = FeedBack.objects.all()
+    return render(request, "feedback_show.html", {'fb': fb})
+
+
+
+def client_feedback(request):
+    if request.method == "POST":
+        try:
+            description = request.POST['feedback_b']
+            print("|||||||||||||",description)
+            BloodBank = request.POST.get('b_id')
+            print("|||||||||||||||||||||||||||||",BloodBank)
+            User_id = request.session['d_id']
+            f_date = date.today()
+            rate = request.POST.get('rate')
+
+            feed = FeedBack(User_id_id=User_id, b_id_id=BloodBank, feedback_b=description,
+                            f_date=f_date, Ratings=rate)
+            feed.save()
+            return redirect("/client/client_bloodbankdetails/%s" % BloodBank)
+        except:
+            print("=======", sys.exc_info())
+    else:
+        pass
+    return render(request, "client_bloodbankdetails.html")
+
+
+def bloodbank_details(request, id):
+    bb = Bloodbank.objects.get(b_id=id)
+    feed = Feedback.objects.filter(b_id=id)  # Showing Feedbacks
+    feed_count = Feedback.objects.filter(b_id=id).count()
+    rate = 0
+    for data in feed:
+        rate += data.Ratings
+
+    if feed_count > 0:
+        count_rate = rate / feed_count
+    else:
+        count_rate = None
+    return render(request, "client_bloodbankdetails.html",
+                  {'bb': bb, 'feed': feed, 'f_count': feed_count, 'count_rate': count_rate,'blood_id':id})
+
+
+def client_appointment(request,id):
+    if request.method == "POST":
+        try:
+            u = request.session['d_id']
+            dat = date.today().strftime("%Y-%m-%d")
+            tim = request.POST['appointment_time']
+            ddate = request.POST['donation_date']
+            book = Appointment(u_id_id=Donor,b_id_id=id,given_date=dat, appointment_time=tim, donation_date=ddate, appointment_status=0)
+            book.save()
+            return redirect("/client/bbank_directory")
+        except:
+            print("---------------", sys.exc_info())
+
+    return render(request, 'client_appointment.html',{'blood_id':id})
