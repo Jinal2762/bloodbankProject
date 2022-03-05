@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 
 class Area(models.Model):
     area_id = models.AutoField(primary_key=True)
@@ -20,6 +20,8 @@ class Bloodbank(models.Model):
     b_contact = models.BigIntegerField()
     b_timing = models.TimeField()
     area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
+    description = models.CharField(max_length=100 , default="desc")
+
 
     class Meta:
         db_table = "bloodbank_bloodbank"
@@ -28,6 +30,7 @@ class Bloodbank(models.Model):
 class Blood_grp(models.Model):
     bloodgrp_id = models.AutoField(primary_key=True)
     bloodgrp_type = models.CharField(max_length=5)
+    bloodgrp_status = models.CharField(max_length=120 , default="0")
 
     class Meta:
         db_table = "bloodbank_bloods_grp"
@@ -91,10 +94,11 @@ class Van(models.Model):
 class Appointment(models.Model):
     appointment_id = models.AutoField(primary_key=True)
     u_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    given_date = models.DateTimeField()
+    given_date = models.DateField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
     appointment_status = models.CharField(max_length=20)
     appointment_time = models.DateTimeField()
+
 
     class Meta:
         db_table = "bloodbank_appointment"
@@ -145,6 +149,7 @@ class Feedback(models.Model):
     feedback_b=models.CharField(max_length=200)
     f_date = models.DateTimeField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
+    ratings = models.IntegerField(default=5)
 
     class Meta:
         db_table = "bloodbank_feedback"

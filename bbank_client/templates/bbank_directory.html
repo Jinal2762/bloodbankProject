@@ -1,19 +1,46 @@
 {% extends "client_header.html" %}
 {% load static %}
 {% block content %}
- <table id="Bloodabnk-Table" class="table table-bordered" border="0">
-     <thead>
-     <tr>
-         <th>Name</th>
-         <th>Image</th>
-     </tr>
-     </thead>
-     <tbody>
-     {% for data in bbanks %}
-     <tr>
-         <td>{{ data.b_name }}</td>
-         <td>{{ data.b_img }}</td>
-     </tr>
-     {% endfor %}
- </table>
+<section class="section-content-block section-process">
+
+    <div class="container-fluid">
+
+        <div class="row section-heading-wrapper">
+
+            <div class="col-md-12 col-sm-12">
+                <h2><span>Donation</span> Process</h2>
+                <h4>The donation process from the time you arrive center until the time you leave</h4>
+            </div> <!-- end .col-sm-10  -->
+
+        </div> <!--  end .row  -->
+
+        <div class="row wow fadeInUp">
+            {% for x in bb %}
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+
+                <div class="process-layout">
+
+                    <figure class="process-img">
+                         <a href="/client/client_bloodbankdetails/{{x.b_id}}">
+                        <img src="{% static 'img/' %}{{x.b_img}}" alt="process"/>
+                         </a>
+                    </figure> <!-- end .process-img  -->
+
+                    <article class="process-info">
+                        <h2>{{x.b_name}}</h2>
+                        <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte
+                            dign pharetra mauris.
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -83,6 +83,11 @@
                     </button>
                     <a class="logo" href="index.html"><img alt="" src="{% static 'v_2/images/logo.png' %}"></a>
                 </div>
+                        </div> <!--  end .widget -->
+            <div class="col-md-4 col-sm-12">
+
+                <div class="widget site-sidebar">
+
                 <form method="post" action="/search_product/">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search...." id="search_pro"
@@ -91,17 +96,15 @@
                     </div>
                     <input type="hidden" value="submit"/>
                 </form>
+                </div>
+            </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
 
                         <li>
-                            <a href="#">Home</a>
-                            <ul class="drop-down">
-                                <li><a href="bbank_directory.html" title="Home Layout 01">Bloodbank Directory</a></li>
-                                <li><a href="home.html" title="Home Layout 02">Home</a></li>
-                            </ul>
+                            <a href="/client/home">Home</a>
                         </li>
-                        <li><a href="about_us.html" title="About Us">About Us</a></li>
+                        <li><a href="/client/about_us" title="About Us">About Us</a></li>
 
                         <li>
                             <a href="#">Events</a>
@@ -131,7 +134,7 @@
                                 <li><a href="faq.html" title="FAQ">FAQ</a></li>
                             </ul>
                         </li>
-
+                        <li><a href="/client/bbank_directory">Blood Banks</a></li>
                         <li>
                             <a href="#">Want to donate</a>
                             <ul class="drop-down">
