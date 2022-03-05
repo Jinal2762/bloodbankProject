@@ -11,7 +11,7 @@ urlpatterns = [
     path('client_feedback/', client_views.client_feedback),
     path('about_us/', client_views.aboutus),
     path('home/', client_views.home),
-    path('registeration/', client_views.client_register),
+    path('registration/', client_views.client_register),
     path('bbank_directory/',client_views.bbank_directory),
     path('client_bloodbankdetails/<int:id>',client_views.bloodbank_details),
     path('client_feedback/', client_views.client_feedback),
