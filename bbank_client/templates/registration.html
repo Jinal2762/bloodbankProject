@@ -29,7 +29,7 @@
 
             <h2 class="contact-title">Registration</h2>
 
-            <form role="form" action="/bb_client/client_register/{{User.u_id}}" method="post">
+            <form role="form" action="/client/registration/{{User.u_id}}" method="post">
                 {% csrf_token %}
 
 
@@ -80,9 +80,9 @@
                     <input type="number" class="form-control" id="User_Weight" name="user_weight"
                            value="{{User.user_weight}}">
                 </div>
-f
+
                 <div class="form-group">
-                    <label for="Contact_N0">Contact N0</label>
+                    <label for="Contact_N0">Contact No</label>
                     <input type="number" class="form-control" id="Contact_N0" name="Contact_N0"
                            value="{{Donor.Contact_N0}}">
                 </div>

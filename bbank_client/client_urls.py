@@ -12,7 +12,11 @@ urlpatterns = [
     path('about_us/', client_views.aboutus),
     path('home/', client_views.home),
     path('registration/', client_views.client_register),
+<<<<<<< HEAD
     path('bbank_directory/', client_views.bbank_directory),
+=======
+    path('bbank_directory/',client_views.bbank_directory),
+>>>>>>> ee3659a874adbb7c0a20d3cb16ece45302bbb2c7
     path('client_bloodbankdetails/<int:id>',client_views.bloodbank_details),
     path('client_feedback/', client_views.client_feedback),
     path('client_appointment/<int:id>', client_views.client_appointment),

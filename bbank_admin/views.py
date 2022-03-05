@@ -41,7 +41,6 @@ def show_stock(request):
 
 def show_appointment_show(request):
     a = Appointment.objects.all()
-    print("=========INSIDE FUNCRION", a)
     return render(request, "show_appointment.html", {'a': a})
 
 
