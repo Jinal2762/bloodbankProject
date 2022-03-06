@@ -127,7 +127,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_DIRS = (os.path.join(BASE_DIR, 'bbank_admin/static/'),(BASE_DIR, 'bbank_client/static/'))
+STATIC_DIRS = (os.path.join(BASE_DIR, 'bbank_admin/static/'), (BASE_DIR, 'bbank_client/static/'))
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 

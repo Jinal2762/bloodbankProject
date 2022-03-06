@@ -216,11 +216,8 @@ def client_appointment(request, id):
             dat = date.today().strftime("%Y-%m-%d")
             tim = request.POST['appointment_time']
             ddate = request.POST['donation_date']
-<<<<<<< HEAD
             book = Appointment(u_id_id=Donor, b_id_id=id, given_date=dat, appointment_time=tim, donation_date=ddate, appointment_status=0)
-=======
             book = Appointment(u_id_id=u,b_id_id=id,given_date=dat, appointment_time=tim, donation_date=ddate, appointment_status=0)
->>>>>>> ee3659a874adbb7c0a20d3cb16ece45302bbb2c7
             book.save()
             return redirect("/client/bbank_directory")
         except:
