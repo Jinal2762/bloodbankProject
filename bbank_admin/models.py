@@ -140,7 +140,7 @@ class Admin(models.Model):
     is_admin = models.IntegerField()
 
     class Meta:
-        db_table="admin"
+        db_table = "admin"
 
 
 class Feedback(models.Model):

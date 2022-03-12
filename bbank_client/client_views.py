@@ -83,6 +83,10 @@ def home(request):
     return render(request, "home.html")
 
 
+def contact(request):
+    return render(request, "contact.html")
+
+
 def autosuggest(request):
     if 'term' in request.GET:
         qs = Bloodbank.objects.filter(bloodgrp_type__istartswith=request.GET.get('term'))
@@ -113,6 +117,10 @@ def bbank_directory(request):
 
 def aboutus(request):
     return render(request, "about_us.html")
+
+
+def gallery(request):
+    return render(request, "gallery.html")
 
 
 def client_register(request):
