@@ -1,6 +1,7 @@
 from django.db import models
 import datetime
 
+
 class Area(models.Model):
     area_id = models.AutoField(primary_key=True)
     area_name = models.CharField(max_length=150, null=False)
@@ -20,8 +21,7 @@ class Bloodbank(models.Model):
     b_contact = models.BigIntegerField()
     b_timing = models.TimeField()
     area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
-    description = models.CharField(max_length=100 , default="desc")
-
+    description = models.CharField(max_length=100, default="desc")
 
     class Meta:
         db_table = "bloodbank_bloodbank"
@@ -30,7 +30,7 @@ class Bloodbank(models.Model):
 class Blood_grp(models.Model):
     bloodgrp_id = models.AutoField(primary_key=True)
     bloodgrp_type = models.CharField(max_length=5)
-    bloodgrp_status = models.CharField(max_length=120 , default="0")
+    bloodgrp_status = models.CharField(max_length=120, default="0")
 
     class Meta:
         db_table = "bloodbank_bloods_grp"
@@ -50,20 +50,30 @@ class User(models.Model):
     address = models.CharField(max_length=100)
     password = models.CharField(max_length=8)
     area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=10, null=True)
+    otp_used = models.CharField(max_length=10, null=True)
 
     class Meta:
         db_table = "bloodbank_user"
 
 
+class Gallery(models.Model):
+    gallery_id = models.AutoField(primary_key=True)
+    b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
+    img_path = models.FileField()
+
+    class Meta:
+        db_table = "bloodbank_gallery"
+
+
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
-    e_name = models.CharField(max_length=100)
     e_date = models.DateField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
     e_des = models.CharField(max_length=500)
-    e_img = models.FileField()
     e_location = models.CharField(max_length=200)
     area_id = models.ForeignKey(Area, on_delete=models.CASCADE)
+    gallery_id = models.ForeignKey(Gallery, on_delete=models.CASCADE)
 
     class Meta:
         db_table = "bloodbank_event"
@@ -72,7 +82,7 @@ class Event(models.Model):
 class Blood_stock(models.Model):
     stock_id = models.AutoField(primary_key=True)
     bloodgrp_id = models.ForeignKey(Blood_grp, on_delete=models.CASCADE)
-    b_stock = models.IntegerField()
+    qty = models.IntegerField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
 
     class Meta:
@@ -97,21 +107,11 @@ class Appointment(models.Model):
     given_date = models.DateField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
     appointment_status = models.CharField(max_length=20)
-    appointment_time = models.DateTimeField()
-
+    appointment_date = models.DateField()
+    appointment_time = models.TimeField()
 
     class Meta:
         db_table = "bloodbank_appointment"
-
-
-class Gallery(models.Model):
-    gallery_id = models.AutoField(primary_key=True)
-    b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
-    img_path = models.FileField()
-    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = "bloodbank_gallery"
 
 
 class Request_blood(models.Model):
@@ -146,12 +146,10 @@ class Admin(models.Model):
 class Feedback(models.Model):
     f_id = models.AutoField(primary_key=True)
     u_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    feedback_b=models.CharField(max_length=200)
+    feedback_b = models.CharField(max_length=200)
     f_date = models.DateTimeField()
     b_id = models.ForeignKey(Bloodbank, on_delete=models.CASCADE)
     ratings = models.IntegerField(default=5)
 
     class Meta:
         db_table = "bloodbank_feedback"
-
-

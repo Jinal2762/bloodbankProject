@@ -29,6 +29,7 @@
                         <th>Image</th>
                         <th>Location</th>
                         <th>Area Id</th>
+                        <th>Gallery Id</th>
                         <th>Action</th>
                         <th>Action</th>
                     </tr>
@@ -37,13 +38,13 @@
                     {% for data in events %}
                     <tr>
                         <td>{{ data.event_id}}</td>
-                        <td>{{ data.e_name }}</td>
                         <td>{{ data.e_date}}</td>
                         <td>{{ data.b_id }}</td>
                         <td>{{ data.e_des}}</td>
                         <td>{{ data.e_img}}</td>
-                        <td>{{ data.e_location}}</td>
-                        <td>{{data.area_id}}</td>
+                        <td>{{ data.e_location }}</td>
+                        <td>{{ data.area_id }}</td>
+                        <td>{{ data.gallery_id }}</td>
                         <td><a href = "/delete_event/{{ data.event_id }}">Delete</a></td>
                         <td><a href = "/edit_event/{{ data.event_id }}">Update</a></td>
                     </tr>

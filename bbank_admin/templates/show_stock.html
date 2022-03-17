@@ -33,7 +33,7 @@
                     {% for data in stocks %}
                     <tr>
                         <td>{{ data.stock_id }}</td>
-                        <td>{{ data.b_stock }}</td>
+                        <td>{{ data.b_qty }}</td>
                         <td>{{ data.b_id }}</td>
                         <td>{{ data.bloodgrp_id}}</td>
                         <td><a href = "/delete_stock/{{ data.stock_id }}">Delete</a></td>

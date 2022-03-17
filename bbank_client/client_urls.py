@@ -20,6 +20,7 @@ urlpatterns = [
     path('feedback_show/', client_views.feedback_show),
     path('search_product/', client_views.autosuggest, name='pro_search'),
     path('contact/', client_views.contact),
-    path('cgallery/', client_views.gallery)
+    path('cgallery/', client_views.gallery),
+    path('appointment/', client_views.appointment_details)
 
 ]

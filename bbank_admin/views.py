@@ -429,7 +429,6 @@ def insert_gallery(request):
     print("====INSIDE FUNCTION====")
     flag = Bloodbank.objects.all()
     print("========", flag)
-    temp2 = Event.objects.all()
     if request.method == "POST":
         form = GalleryForm(request.POST, request.FILES)
         print("--+++++++++++++**---------", form.errors)
@@ -442,19 +441,18 @@ def insert_gallery(request):
                 print("-----*********-----", sys.exc_info())
     else:
         form = GalleryForm()
-    return render(request, 'gallery_form.html', {'form': form, 'flag': flag,'temp2': temp2})
+    return render(request, 'gallery_form.html', {'form': form, 'flag': flag})
 
 
 def edit_gallery(request, id):
     flag = Bloodbank.objects.all()
-    temp2 = Event.objects.all()
     gallery = Gallery.objects.get(gallery_id=id)
     if request.method == "POST":
         form = GalleryForm(request.POST, instance=gallery)
         if form.is_valid():
             form.save()
             return redirect("/show_gallery")
-    return render(request, "edit_gallery.html", {'gallery': gallery, 'flag': flag, 'temp': temp, 'temp2': temp2})
+    return render(request, "edit_gallery.html", {'gallery': gallery, 'flag': flag, 'temp': temp})
 
 
 def destroy_gallery(request, gallery_id):
@@ -503,6 +501,7 @@ def destroy_user(request, u_id):
 def insert_event(request):
     flag = Bloodbank.objects.all()
     temp = Area.objects.all()
+    temp1 = Gallery.objects.all()
     if request.method == "POST":
         form = EventForm(request.POST, request.FILES)
         print("-----------", request.POST.get('e_img'))
@@ -517,19 +516,20 @@ def insert_event(request):
                 print("----------", sys.exc_info())
     else:
         form = EventForm()
-    return render(request, 'events_form.html', {'form': form, 'flag': flag, 'temp': temp})
+    return render(request, 'events_form.html', {'form': form, 'flag': flag, 'temp': temp, 'temp1': temp1})
 
 
 def edit_event(request, id):
     flag = Bloodbank.objects.all()
     temp = Area.objects.all()
+    temp1 = Gallery.objects.all()
     event = Event.objects.get(event_id=id)
     if request.method == "POST":
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
             return redirect("/show_events")
-    return render(request, "edit_event.html", {'event': event, 'flag': flag, 'temp': temp})
+    return render(request, "edit_event.html", {'event': event, 'flag': flag, 'temp': temp, 'temp1': temp1})
 
 
 def destroy_events(request, event_id):

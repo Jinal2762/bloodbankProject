@@ -47,13 +47,13 @@ class BbankForm(forms.ModelForm):
 class Blood_stockForm(forms.ModelForm):
     class Meta:
         model = Blood_stock
-        fields = ["bloodgrp_id", "b_stock", "b_id"]
+        fields = ["bloodgrp_id", "qty", "b_id"]
 
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ["u_id", "b_id", "given_date", "appointment_status", "appointment_time"]
+        fields = ["u_id", "b_id", "given_date", "appointment_status", "appointment_time", "appointment_date"]
 
 
 class Request_bloodForm(forms.ModelForm):
@@ -63,11 +63,10 @@ class Request_bloodForm(forms.ModelForm):
 
 
 class EventForm(forms.ModelForm):
-    e_img = forms.FileField()
 
     class Meta:
         model = Event
-        fields = ["e_name", 'e_date', 'b_id', 'e_des', 'e_img', 'e_location', 'area_id']
+        fields = ['e_date', 'b_id', 'e_des', 'e_location', 'area_id', 'gallery_id']
 
 
 class VanForm(forms.ModelForm):
@@ -81,7 +80,7 @@ class GalleryForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
-        fields = [ "img_path", "event_id", "b_id"]
+        fields = ["img_path", "b_id"]
 
 
 class FeedbackForm(forms.ModelForm):
@@ -94,4 +93,3 @@ class AdminForm(forms.ModelForm):
     class Meta:
         model = Admin
         fields = ["admin_fname", "admin_lname", "admin_email", "admin_contact", "admin_dob", "admin_gender"]
-

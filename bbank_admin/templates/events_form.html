@@ -7,12 +7,6 @@
     {% csrf_token %}
     <div class="form-group">
         <div class="input-label">
-            <label>Event Name</label>
-        </div>
-        <input type="text" class="form-control" value="" name="e_name">
-    </div>
-    <div class="form-group">
-        <div class="input-label">
             <label>Event Date</label>
         </div>
         <input type="date" class="form-control" name="e_date">
@@ -52,6 +46,16 @@
         <select name="area_id" class="form-control" id="exampleFormControlSelect3">
             {% for data in temp %}
             <option value="{{data.area_id}}">{{data.area_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="input-label">
+            <label for="exampleFormControlSelect4">Gallery</label>
+        </div>
+        <select name="gallery_id" class="form-control" id="exampleFormControlSelect4">
+            {% for data in temp1 %}
+            <option value="{{data.area_id}}">{{data.img_path}}</option>
             {% endfor %}
         </select>
     </div>

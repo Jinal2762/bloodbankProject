@@ -119,6 +119,10 @@ def aboutus(request):
     return render(request, "about_us.html")
 
 
+def appointment_details(request):
+    return render(request, "appointment_details.html")
+
+
 def gallery(request):
     return render(request, "gallery.html")
 
@@ -173,10 +177,10 @@ def client_update_profile(request):
         pass
     return render(request, "client_profile.html", {'ca': u, "bloodgroup": bloodgroup})
 
+
 def feedback_show(request):
     fb = FeedBack.objects.all()
     return render(request, "feedback_show.html", {'fb': fb})
-
 
 
 def client_feedback(request):
